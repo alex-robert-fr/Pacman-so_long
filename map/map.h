@@ -59,7 +59,7 @@ typedef struct s_map
 int		check_path(char *path);
 int		check_wall(char *str, int len, t_walls wall);
 t_map	check_file(char *map_file);
-t_map	read_map(char *map_file);
+t_map	read_and_check_map(char *map_file);
 void	*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
 t_map	set_map(char *map_file);
 #endif

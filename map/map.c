@@ -7,7 +7,7 @@ t_map	check_file(char *map_file)
 	map.error_code = 1;
 	if (check_path(map_file))
 		return (map);
-	map = read_map(map_file);
+	map = read_and_check_map(map_file);
 	if (map.error_code)
 		return (map);
 	map = set_map(map_file);
@@ -50,7 +50,7 @@ int		check_wall(char *str, int len, t_walls wall)
 		{
 			if (str[0] != WALL && len - 1 != WALL)
 				return (1);
-			else if ((i > 0 && i < len - 1) && str[i] != EMPTY)
+			else if ((i > 0 && i < len - 1) && (str[i] != EMPTY && str[i] != WALL))
 				return (1);
 			i++;
 		}
@@ -59,7 +59,7 @@ int		check_wall(char *str, int len, t_walls wall)
 	return (0);	
 }
 
-t_map	read_map(char *map_file)
+t_map	read_and_check_map(char *map_file)
 {
 	t_map	map;
 	int	fd;
