@@ -6,7 +6,7 @@
 #    By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 14:23:23 by alrobert          #+#    #+#              #
-#    Updated: 2023/02/15 19:05:15 by alrobert         ###   ########.fr        #
+#    Updated: 2023/02/27 14:01:43 by alrobert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ OBJ_BONUS = $(BONUS:.c=.o)
 
 
 $(NAME):
-	$(CC) -c $(SRC) $(CFLAGS)
+	$(CC) -c $(SRC) $(CFLAGS) -g
 	ar rcs $(NAME) $(OBJ)
 clean:
 	@rm -f $(OBJ) $(OBJ_BONUS)

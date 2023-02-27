@@ -30,7 +30,9 @@ int	start(char *map_file)
 	t_game		game;
 
 	game.map = check_file(map_file);
-	if (game.map.error_code)
+	if (!game.map)
 		return (1);
+	// free(game.map->size);
+	free(game.map);
 	return(0);
 }
