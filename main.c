@@ -33,9 +33,8 @@ int	start(char *map_file)
 	if (!game.map)
 		return (1);
 	game.window = create_window(24 * 24, 32 * 24, "Pacman");
+	mlx_hook(game.window->win, 17, 0, ft_close, &game);
 	if (mlx_loop(game.window->mlx))
 		return (1);
-	free(game.map->map);
-	free(game.map);
 	return(0);
 }

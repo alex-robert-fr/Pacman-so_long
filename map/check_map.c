@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/02/27 16:48:57 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:46:11 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_wall(char *str, int len, t_walls wall)
 	{
 		while (i < len)
 		{
-			if (str[0] != WALL && len - 1 != WALL)
+			if (str[0] != WALL || len - 1 != WALL)
 				return (1);
 			else if ((i > 0 && i < len - 1) && (str[i] != EMPTY && str[i] != WALL))
 				return (1);
@@ -161,8 +161,10 @@ char	*gnl_trim(int fd, char const *set)
 
 	tmp_str = get_next_line(fd);
 	if (!tmp_str)
-		return (NULL);
+		return (0);
 	str = ft_strtrim(tmp_str, set);
+	if (!str)
+		return (0);
 	if (tmp_str)
 			free(tmp_str);
 	return (str);

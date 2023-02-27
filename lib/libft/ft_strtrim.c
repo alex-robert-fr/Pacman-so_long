@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:32:30 by alrobert          #+#    #+#             */
-/*   Updated: 2023/02/15 16:35:06 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:35:18 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static size_t	rtrim(char const *s1, char const *set)
 			}
 		}
 		else
+			break ;
+		if (!i_start)
 			break ;
 		i_start--;
 	}
