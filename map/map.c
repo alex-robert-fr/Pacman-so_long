@@ -99,8 +99,13 @@ t_map	read_map(char *map_file)
 		str = next_str;
 	}
 	close(fd);
-	map.size = size;if (check_wall(str, size.x, UP))
-			
+	map.size = size;
+	map.error_code = 0;
+	return (map);
+}
+
+t_map 	set_map(char *map_file)
+{
 	t_map	map;
 	int	fd;
 	int	y;
