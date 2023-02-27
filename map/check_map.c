@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
+/*   Updated: 2023/02/27 16:36:58 by alrobert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map.h"
 
 t_map	*check_file(char *map_file)
@@ -8,15 +20,14 @@ t_map	*check_file(char *map_file)
 	// if (!map)
 	// 	return (NULL);
 	if (check_path(map_file))
-		return (NULL);
+		return (0);
 	map = read_and_check_map(map_file);
 	if (!map)
-		return (NULL);
-	// map = set_map(map_file);
-	// map->error_code = 0;
+		return (0);
+	map->map = set_map(*map, map_file);
 	// if (map->error_code)
 	// 	return (map);
-	return (map);	
+	return (map);
 }
 
 int	check_path(char *map_file)
@@ -32,7 +43,7 @@ int	check_path(char *map_file)
 	return (0);
 }
 
-int		check_wall(char *str, int len, t_walls wall)
+int	check_wall(char *str, int len, t_walls wall)
 {
 	int	i;
 
@@ -56,9 +67,8 @@ int		check_wall(char *str, int len, t_walls wall)
 				return (1);
 			i++;
 		}
-		
 	}
-	return (0);	
+	return (0);
 }
 
 t_map	*read_and_check_map(char *map_file)
@@ -73,16 +83,15 @@ t_map	*read_and_check_map(char *map_file)
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (0);
 	map = malloc(sizeof(t_map));
 	str = gnl_trim(fd, "\n");
 	if (!str || !map)
-		return (NULL);
+		return (0);
 	error = 0;
 	last_line = 0;
 	size = v_zero();
 	size.x = ft_strlen(str);
-	// printf("=> %s\n", str);
 	while (str)
 	{
 		printf("=> %s\n", str);
@@ -113,40 +122,40 @@ t_map	*read_and_check_map(char *map_file)
 	if (error)
 	{
 		free(map);
-		return (NULL);
+		return (0);
 	}
 	map->size = size;
 	return (map);
 }
 
-// t_map 	set_map(char *map_file)
-// {
-// 	t_map	map;
-// 	int	fd;
-// 	int	y;
-// 	char	*str;
+char	**set_map(t_map info_map, char *map_file)
+{
+	int		fd;
+	int		line;
+	char	**map;
+	char	*str;
 
-// 	map.error_code = 1;
-// 	fd = open(map_file, O_RDONLY);
-// 	if (fd < 0)
-// 		return (map);
-// 	y = 0;
-// 	str = "";
-// 	map.map = ft_calloc(map.size.y, sizeof(char*));
-// 	printf("----------------------------\n");
-// 	while (str)
-// 	{
-// 		str = ft_strtrim(get_next_line(fd), "\n");
-// 		printf("%i => %s\n", y, str);
-// 		map.map[y] = str;
-// 		if (str)
-// 			free(str);
-// 		y++;
-// 	}
-// 	close(fd);
-// 	map.error_code = 0;
-// 	return (map);
-// }
+	fd = open(map_file, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	map = ft_calloc(info_map.size.y, sizeof(char*));
+	if (!map)
+		return (0);
+	printf("%i ----------------------------\n", info_map.size.y);
+	line = 0;
+	str = gnl_trim(fd, "\n");
+	while (str)
+	{
+		printf("%i => %s\n", line, str);
+		map[line] = str;
+		if (str)
+			free(str);
+		str = gnl_trim(fd, "\n");
+		line++;
+	}
+	close(fd);
+	return (map);
+}
 
 char	*gnl_trim(int fd, char const *set)
 {
