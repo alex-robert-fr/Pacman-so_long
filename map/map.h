@@ -2,6 +2,7 @@
 # define MAP_H
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "../engine/vector.h"
 #include "../lib/get_next_line/get_next_line.h"
 
@@ -61,5 +62,5 @@ t_map	*check_file(char *map_file);
 t_map	*read_and_check_map(char *map_file);
 char	*gnl_trim(int fd, char const *set);
 void	*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
-char	**set_map(t_map info_map, char *map_file);
+char	**set_map_in_array(t_map info_map, char *map_file);
 #endif

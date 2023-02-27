@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/02/27 16:36:58 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:48:57 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@ t_map	*check_file(char *map_file)
 {
 	t_map	*map;
 
-	// map = malloc(sizeof(t_map));
-	// if (!map)
-	// 	return (NULL);
 	if (check_path(map_file))
 		return (0);
 	map = read_and_check_map(map_file);
 	if (!map)
 		return (0);
-	map->map = set_map(*map, map_file);
-	// if (map->error_code)
-	// 	return (map);
+	map->map = set_map_in_array(*map, map_file);
+	if (!map)
+		return (0);
 	return (map);
 }
 
@@ -128,7 +125,7 @@ t_map	*read_and_check_map(char *map_file)
 	return (map);
 }
 
-char	**set_map(t_map info_map, char *map_file)
+char	**set_map_in_array(t_map info_map, char *map_file)
 {
 	int		fd;
 	int		line;

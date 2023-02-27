@@ -1,2 +1,4 @@
 *.o
+*.a
+so_long
 .vscode/
