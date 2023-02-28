@@ -32,7 +32,7 @@ int	start(char *map_file)
 	game.map = check_file(map_file);
 	if (!game.map)
 		return (1);
-	game.window = create_window(24 * 24, 32 * 24, "Pacman");
+	game.window = create_window(game.map->size.x * 24, game.map->size.y * 24, "Pacman");
 	mlx_hook(game.window->win, 17, 0, ft_close, &game);
 	if (mlx_loop(game.window->mlx))
 		return (1);
