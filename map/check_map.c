@@ -58,7 +58,7 @@ int	check_wall(char *str, int len, t_walls wall)
 	{
 		while (i < len)
 		{
-			if (str[0] != WALL || len - 1 != WALL)
+			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
 			else if ((i > 0 && i < len - 1) && (str[i] != EMPTY && str[i] != WALL))
 				return (1);
