@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/01 10:10:22 by alex             ###   ########.fr       */
+/*   Updated: 2023/03/07 18:37:49 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,10 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 	while (str)
 	{
 		printf("%i => %s\n", line, str);
-		map[line] = str;
+		map[line] = ft_strdup(str);
 		if (str)
 			free(str);
+		printf("%i => %s\n", line, map[line]);
 		str = gnl_trim(fd, "\n");
 		line++;
 	}

@@ -82,7 +82,7 @@ int			check_wall(char *str, int len, t_walls wall);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
-void		*generate_map(t_map map, t_window window);
+void		*generate_map(char **map, t_window window);
 void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 t_vector	v_zero();
