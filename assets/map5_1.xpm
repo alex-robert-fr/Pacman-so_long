@@ -2,7 +2,6 @@
 static char *img[] = {
 "24 24 2 1",
 "  c black",
-". c red",
 "O c #2121FF",
 "                        "
 "                        "

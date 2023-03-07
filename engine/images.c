@@ -7,6 +7,10 @@ t_sprites	*import_imgs(t_window window)
 
 	size = 24;
 	sprites = malloc(sizeof(t_sprites));
-	sprites->sp3_0.original = mlx_xpm_file_to_image(window.mlx, "../assets/map3_0.xpm", &size, &size);
+	sprites->sp3_0.original = mlx_xpm_file_to_image(window.mlx, "assets/map3_0.xpm", &size, &size);
+	if (!sprites->sp3_0.original)
+		ft_putstr_fd("NUUUUUUUUUULLLL", 1);
+	else
+		ft_putstr_fd("CAVAA", 1);
 	return (sprites);
 }
