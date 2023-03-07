@@ -1,6 +1,4 @@
-#include "./pacman.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "./includes/pacman.h"
 
 int	main(int argc, char *argv[])
 {
@@ -33,6 +31,7 @@ int	start(char *map_file)
 	if (!game.map)
 		return (1);
 	game.window = create_window(game.map->size.x * 24, game.map->size.y * 24, "Pacman");
+	generate_map(*game.map, *game.window);
 	mlx_hook(game.window->win, 17, 0, ft_close, &game);
 	if (mlx_loop(game.window->mlx))
 		return (1);

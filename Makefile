@@ -2,8 +2,10 @@ NAME		=	so_long
 CC		=	gcc
 LIB_PATH	=	lib/
 SRC		=	main.c
-MAP_SRC		=	./map/check_map.c 
-ENGINE_SRC	=	./engine/vector.c
+MAP_SRC		=	./map/check_map.c \
+				./map/generate_map.c
+ENGINE_SRC	=	./engine/vector.c \
+				./engine/images.c
 WIN_SRC		=	./window/window.c
 LIBFT_PATH	=	$(LIB_PATH)libft
 LIBFT_NAME	=	libft.a
