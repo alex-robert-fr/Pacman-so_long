@@ -18,6 +18,14 @@ int			ft_close(t_game *game)
 
 	i = 0;
 	mlx_loop_end(game->window->mlx);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp0_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp1_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp2_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp3_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp4_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp5_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp10_0.original);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->sp13_0.original);
 	mlx_destroy_image(game->window->mlx, game->map->sprites->spxxx.original);
 	mlx_destroy_window(game->window->mlx, game->window->win);
 	mlx_destroy_display(game->window->mlx);
