@@ -42,8 +42,15 @@ void	*generate_map(t_map *map, t_window window)
 						put_map_sprite_to_window(window, map->sprites->sp10_2.original, x, y);
 				}
 				//Mur Bas
-				else if (y == (map->size.y - 1) && map->map[y - 1][x] == '0' && map->map[y][x + 1] == '1' && map->map[y][x - 1] == '1')
-					put_map_sprite_to_window(window, map->sprites->sp13_0.original, x, y);
+				else if (y == (map->size.y - 1) && map->map[y][x + 1] == '1' && map->map[y][x - 1] == '1')
+				{
+					if (map->map[y - 1][x] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp13_0.original, x, y);
+					else if (map->map[y - 1][x + 1] == '1' && map->map[y - 1][x - 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp12_3.original, x, y);
+					else if (map->map[y - 1][x - 1] == '1' && map->map[y - 1][x + 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp13_3.original, x, y);
+				}
 				//Mur Gauche
 				else if (x == 0 && map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1')
 				{
@@ -99,6 +106,8 @@ void	*generate_map(t_map *map, t_window window)
 					/* -------------------------------------------------------------------------- */
 					if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '1')
 					{
+						//Vide
+						put_map_sprite_to_window(window, map->sprites->sp12_2.original, x, y);
 						//Angle 0,0
 						if (map->map[y - 1][x - 1] == '0')
 							put_map_sprite_to_window(window, map->sprites->sp5_2.original, x, y);

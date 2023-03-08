@@ -32,7 +32,10 @@ t_sprites	*import_imgs(t_window window)
 	sprites->sp10_1.original = mlx_xpm_file_to_image(window.mlx, "assets/map10_1.xpm", &size, &size);
 	sprites->sp10_2.original = mlx_xpm_file_to_image(window.mlx, "assets/map10_2.xpm", &size, &size);
 	sprites->sp11_2.original = mlx_xpm_file_to_image(window.mlx, "assets/map11_2.xpm", &size, &size);
+	sprites->sp12_2.original = mlx_xpm_file_to_image(window.mlx, "assets/map12_2.xpm", &size, &size);
+	sprites->sp12_3.original = mlx_xpm_file_to_image(window.mlx, "assets/map12_3.xpm", &size, &size);
 	sprites->sp13_0.original = mlx_xpm_file_to_image(window.mlx, "assets/map13_0.xpm", &size, &size);
+	sprites->sp13_3.original = mlx_xpm_file_to_image(window.mlx, "assets/map13_3.xpm", &size, &size);
 	sprites->sp14_0.original = mlx_xpm_file_to_image(window.mlx, "assets/map14_0.xpm", &size, &size);
 	sprites->spxxx.original = mlx_xpm_file_to_image(window.mlx, "assets/no_valid.xpm", &size, &size);
 	return (sprites);

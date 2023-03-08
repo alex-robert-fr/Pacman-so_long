@@ -25,16 +25,17 @@ int	main(int argc, char *argv[])
 
 int	start(char *map_file)
 {
-	t_game		game;
+	t_game		*game;
 
-	game.map = check_file(map_file);
-	if (!game.map)
+	game = check_file(map_file);
+	if (!game->map)
 		return (1);
-	game.window = create_window(game.map->size.x * 24, game.map->size.y * 24, "Pacman");
+	game->window = create_window(game->map->size.x * 24, game->map->size.y * 24, "Pacman");
 	usleep(10000);
-	generate_map(game.map, *game.window);
-	mlx_hook(game.window->win, 17, 0, ft_close, &game);
-	if (mlx_loop(game.window->mlx))
+	generate_map(game->map, *game->window);
+	printf("\nPLAYER: %i, %i\n", game->player->position.x, game->player->position.y);
+	mlx_hook(game->window->win, 17, 0, ft_close, &game);
+	if (mlx_loop(game->window->mlx))
 		return (1);
 	return(0);
 }
