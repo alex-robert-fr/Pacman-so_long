@@ -42,15 +42,24 @@ typedef struct s_sprite
 typedef struct s_sprites
 {
 	t_sprite	sp0_0;
+	t_sprite	sp0_1;
 	t_sprite	sp1_0;
 	t_sprite	sp2_0;
+	t_sprite	sp2_2;
 	t_sprite	sp3_0;
+	t_sprite	sp3_2;
 	t_sprite	sp4_0;
 	t_sprite	sp4_1;
+	t_sprite	sp4_2;
 	t_sprite	sp5_0;
+	t_sprite	sp5_2;
+	t_sprite	sp6_0;
 	t_sprite	sp6_1;
+	t_sprite	sp7_0;
 	t_sprite	sp7_1;
+	t_sprite	sp8_0;
 	t_sprite	sp8_1;
+	t_sprite	sp9_0;
 	t_sprite	sp9_1;
 	t_sprite	sp9_2;
 	t_sprite	sp10_0;

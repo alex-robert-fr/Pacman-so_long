@@ -15,6 +15,7 @@ void	*generate_map(t_map *map, t_window window)
 		{
 			if (map->map[y][x] == '1')
 			{
+				put_map_sprite_to_window(window, map->sprites->spxxx.original, x, y);
 				/* -------------------------------------------------------------------------- */
 				/*                                     MUR                                    */
 				/* -------------------------------------------------------------------------- */
@@ -31,20 +32,87 @@ void	*generate_map(t_map *map, t_window window)
 				else if (y == map->size.y - 1 && x == map->size.x - 1)
 					put_map_sprite_to_window(window, map->sprites->sp4_0.original, x, y);
 				//Mur Haut
-				else if (y == 0 && map->map[y + 1][x] == '0' && map->map[y][x + 1] == '1' && map->map[y][x - 1] == '1')
-					put_map_sprite_to_window(window, map->sprites->sp10_0.original, x, y);
-				// Mur Bas
+				else if (y == 0 && map->map[y][x + 1] == '1' && map->map[y][x - 1] == '1')
+				{
+					if (map->map[y + 1][x] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp10_0.original, x, y);
+					else if (map->map[y + 1][x + 1] == '1' && map->map[y + 1][x - 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp11_2.original, x, y);
+					else if (map->map[y + 1][x - 1] == '1' && map->map[y + 1][x + 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp10_2.original, x, y);
+				}
+				//Mur Bas
 				else if (y == (map->size.y - 1) && map->map[y - 1][x] == '0' && map->map[y][x + 1] == '1' && map->map[y][x - 1] == '1')
 					put_map_sprite_to_window(window, map->sprites->sp13_0.original, x, y);
 				//Mur Gauche
-				else if (x == 0 && map->map[y][x + 1] == '0' && map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1')
-					put_map_sprite_to_window(window, map->sprites->sp3_0.original, x, y);
+				else if (x == 0 && map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1')
+				{
+					if (map->map[y][x + 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp3_0.original, x, y);
+					else if (map->map[y + 1][x + 1] == '1' && map->map[y - 1][x + 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp7_0.original, x, y);
+					else if (map->map[y - 1][x + 1] == '1' && map->map[y + 1][x + 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp9_0.original, x, y);
+				}
 				// Mur Droite
-				else if (x == (map->size.x - 1) && map->map[y][x - 1] == '0' && map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1')
-					put_map_sprite_to_window(window, map->sprites->sp2_0.original, x, y);
+				else if (x == (map->size.x - 1) && map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1')
+				{
+					if (map->map[y][x - 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp2_0.original, x, y);
+					else if (map->map[y + 1][x - 1] == '1' && map->map[y - 1][x - 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp6_0.original, x, y);
+					else if (map->map[y - 1][x - 1] == '1' && map->map[y + 1][x - 1] == '0')
+						put_map_sprite_to_window(window, map->sprites->sp8_0.original, x, y);
+				}
+				/* -------------------------------------------------------------------------- */
+				/*                                    BLOC                                    */
+				/* -------------------------------------------------------------------------- */
+				//Angle 0,0
+				else if (map->map[y - 1][x] == '0' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '0' && map->map[y][x + 1] == '1')
+					put_map_sprite_to_window(window, map->sprites->sp7_1.original, x, y);
+				//Angle 0,1
+				else if (map->map[y - 1][x] == '0' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '0')
+					put_map_sprite_to_window(window, map->sprites->sp6_1.original, x, y);
+				//Angle 1,0
+				else if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '0' && map->map[y][x - 1] == '0' && map->map[y][x + 1] == '1')
+					put_map_sprite_to_window(window, map->sprites->sp9_2.original, x, y);
+				//Angle 1,1
+				else if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '0' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '0')
+					put_map_sprite_to_window(window, map->sprites->sp10_1.original, x, y);
+				//Mur Haut
+				else if (map->map[y - 1][x] == '0' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '1')
+					put_map_sprite_to_window(window, map->sprites->sp14_0.original, x, y);
+				//Mur Bas
+				else if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '0' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '1')
+					put_map_sprite_to_window(window, map->sprites->sp4_1.original, x, y);
+				//Mur Gauche
+				else if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '0' && map->map[y][x + 1] == '1')
+					put_map_sprite_to_window(window, map->sprites->sp9_1.original, x, y);
+				//Mur Droite
+				else if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '0')
+					put_map_sprite_to_window(window, map->sprites->sp8_1.original, x, y);
 				// Par default
 				else
-					put_map_sprite_to_window(window, map->sprites->spxxx.original, x, y);
+				{
+					/* -------------------------------------------------------------------------- */
+					/*                                  EXTRUSION                                 */
+					/* -------------------------------------------------------------------------- */
+					if (map->map[y - 1][x] == '1' && map->map[y + 1][x] == '1' && map->map[y][x - 1] == '1' && map->map[y][x + 1] == '1')
+					{
+						//Angle 0,0
+						if (map->map[y - 1][x - 1] == '0')
+							put_map_sprite_to_window(window, map->sprites->sp5_2.original, x, y);
+						//Angle 0,1
+						if (map->map[y - 1][x + 1] == '0')
+							put_map_sprite_to_window(window, map->sprites->sp4_2.original, x, y);
+						//Angle 1,0
+						if (map->map[y + 1][x - 1] == '0')
+							put_map_sprite_to_window(window, map->sprites->sp3_2.original, x, y);
+						//Angle 1,1
+						if (map->map[y + 1][x + 1] == '0')
+							put_map_sprite_to_window(window, map->sprites->sp2_2.original, x, y);
+					}
+				}
 			}
 			x++;
 		}
