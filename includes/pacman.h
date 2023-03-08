@@ -33,17 +33,6 @@ typedef enum e_elements
 	EMPTY = '0'
 }	t_elements;
 
-typedef struct s_map
-{
-	t_vector	size;
-	char		**map;
-}	t_map;
-
-typedef struct s_game {
-	t_map		*map;
-	t_window	*window;
-}	t_game;
-
 typedef struct s_sprite
 {
 	void	*original;
@@ -73,6 +62,17 @@ typedef struct s_sprites
 	t_sprite	sp14_0;
 	t_sprite	spxxx;
 }	t_sprites;
+typedef struct s_map
+{
+	t_vector	size;
+	char		**map;
+	t_sprites	*sprites;
+}	t_map;
+
+typedef struct s_game {
+	t_map		*map;
+	t_window	*window;
+}	t_game;
 
 int			start(char *map_file);
 int			mlx_loop(void *mlx);
@@ -82,7 +82,8 @@ int			check_wall(char *str, int len, t_walls wall);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
-void		*generate_map(char **map, t_window window);
+void		*generate_map(t_map map, t_window window);
+void	put_map_sprite_to_window(t_window win, t_sprite *sprite, int x, int y);
 void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 t_vector	v_zero();

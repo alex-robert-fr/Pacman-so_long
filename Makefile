@@ -15,7 +15,7 @@ GNL_PATH	=	$(LIB_PATH)get_next_line/
 GNL_SRC		=	$(GNL_PATH)get_next_line.c \
 			$(GNL_PATH)get_next_line_utils.c
 
-all: $(LIBFT_NAME) $(MLX_NAME) $(NAME)
+all: $(LIBFT_NAME) $(NAME) #$(MLX_NAME)
 
 $(NAME):
 	$(CC) -g -I$(LIB_PATH)minilibx-linux/ $(SRC) $(WIN_SRC) $(MAP_SRC) $(ENGINE_SRC) $(GNL_SRC) -L$(LIB_PATH)minilibx-linux -l$(MLX_NAME) -L/usr/lib -lXext -lX11 $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME) #-Wextra -Wall -Werror
@@ -28,7 +28,7 @@ $(MLX_NAME):
 
 clean:
 	make clean -C $(LIBFT_PATH)
-	make clean -C $(MLX_PATH)
+	#make clean -C $(MLX_PATH)
 
 fclean: clean
 	make fclean -C $(LIBFT_PATH)

@@ -31,8 +31,8 @@ int	start(char *map_file)
 	if (!game.map)
 		return (1);
 	game.window = create_window(game.map->size.x * 24, game.map->size.y * 24, "Pacman");
-	sleep(1);
-	generate_map(game.map->map, *game.window);
+	usleep(10000);
+	generate_map(*game.map, *game.window);
 	mlx_hook(game.window->win, 17, 0, ft_close, &game);
 	if (mlx_loop(game.window->mlx))
 		return (1);
