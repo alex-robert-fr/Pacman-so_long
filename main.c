@@ -34,6 +34,8 @@ int	start(char *map_file)
 	usleep(10000);
 	printf("\nPLAYER: [%i, %i]\n", game->entities->player->position.x, game->entities->player->position.y);
 	generate_map(game->map, *game->window);
+	if (!set_spawn_entity(*game->window, game->entities->player))
+		return (1);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
 	if (mlx_loop(game->window->mlx))
 		return (1);
