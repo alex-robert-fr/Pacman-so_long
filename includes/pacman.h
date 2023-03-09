@@ -86,18 +86,22 @@ typedef struct s_player
 	t_vector	position;
 }	t_player;
 
+typedef struct s_entities
+{
+	t_player	*player;
+}	t_entities;
 
 typedef struct s_game {
 	t_window	*window;
 	t_map		*map;
-	t_player	*player;
+	t_entities	*entities;
 }	t_game;
 
 int			start(char *map_file);
 int			mlx_loop(void *mlx);
 int			ft_close(t_game *game);
 int			check_path(char *path);
-int			check_wall(char *str, int len, t_walls wall, t_player *player);
+int			check_wall(char *str, int len, t_walls wall);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
@@ -105,9 +109,11 @@ void		*generate_map(t_map *map, t_window window);
 void		put_map_sprite_to_window(t_window win, t_sprite *sprite, int x, int y);
 void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
+void		*set_entities_map(char	**map, t_entities *entities);
 t_vector	v_zero();
+t_vector	v_init(int x, int y);
 t_game		*check_file(char *map_file);
-t_map		*read_and_check_map(char *map_file, t_player *player);
+t_map		*read_and_check_map(char *map_file);
 t_sprites	*import_imgs(t_window window);
 t_window	*create_window(int x, int y, char *title);
 #endif

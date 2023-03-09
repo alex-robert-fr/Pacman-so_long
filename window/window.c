@@ -62,5 +62,8 @@ int			ft_close(t_game *game)
 	free(game->map->map);
 	free(game->map->sprites);
 	free(game->map);
+	free(game->entities->player);
+	free(game->entities);
+	free(game);
 	exit(0);
-}
+}/* code */

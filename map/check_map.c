@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/08 18:05:16 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:23:31 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ t_game	*check_file(char *map_file)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game));
-	game->player = malloc(sizeof(t_player));
-	game->player->position = v_zero();
+	game = ft_calloc(sizeof(t_game), 1);
+	game->entities = ft_calloc(sizeof(t_entities), 1);
+	game->entities->player = ft_calloc(sizeof(t_player), 1);
 	if (check_path(map_file))
 		return (0);
-	game->map = read_and_check_map(map_file, game->player);
+	game->map = read_and_check_map(map_file);
 	if (!game->map)
 		return (0);
 	game->map->map = set_map_in_array(*game->map, map_file);
 	if (!game->map)
+		return (0);
+	if (!set_entities_map(game->map->map, game->entities))
 		return (0);
 	return (game);
 }
@@ -43,7 +45,7 @@ int	check_path(char *map_file)
 	return (0);
 }
 
-int	check_wall(char *str, int len, t_walls wall, t_player *player)
+int	check_wall(char *str, int len, t_walls wall)
 {
 	int	i;
 
@@ -63,20 +65,15 @@ int	check_wall(char *str, int len, t_walls wall, t_player *player)
 		{
 			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
-			else if (i > 0 && i < len - 1)
-			{
-				if (str[i] == PLAYER)
-					player->position.x = i;
-				else if (str[i] != EMPTY && str[i] != WALL)
+			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER)
 					return (1);
-			}
 			i++;
 		}
 	}
 	return (0);
 }
 
-t_map	*read_and_check_map(char *map_file, t_player *player)
+t_map	*read_and_check_map(char *map_file)
 {
 	int			fd;
 	int			error;
@@ -99,24 +96,22 @@ t_map	*read_and_check_map(char *map_file, t_player *player)
 	size.x = ft_strlen(str);
 	while (str)
 	{
-		if (player->position.x)
-			player->position.y = size.y;
 		printf("=> %s\n", str);
 		next_str = gnl_trim(fd, "\n");
 		if (size.x != (int)ft_strlen(str))
 			error = 1;
 		if (!next_str)
 		{
-			if (check_wall(str, size.x, DOWN, player))
+			if (check_wall(str, size.x, DOWN))
 				error = 1;
 			last_line = 1;
 		}
 		if (!size.y && !last_line)
 		{
-			if (check_wall(str, size.x, UP, player))
+			if (check_wall(str, size.x, UP))
 				error = 1;
 		}
-		else if (!last_line && size.y && check_wall(str, size.x, CENTER, player))
+		else if (!last_line && size.y && check_wall(str, size.x, CENTER))
 			error = 1;
 		size.y++;
 		if (str)
@@ -143,7 +138,7 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 		return (0);
-	map = ft_calloc(info_map.size.y, sizeof(char*));
+	map = ft_calloc(info_map.size.y + 1, sizeof(char*));
 	if (!map)
 		return (0);
 	printf("%i ----------------------------\n", info_map.size.y);
@@ -151,7 +146,6 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 	str = gnl_trim(fd, "\n");
 	while (str)
 	{
-		printf("%i => %s\n", line, str);
 		map[line] = ft_strdup(str);
 		if (str)
 			free(str);
@@ -159,8 +153,33 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 		str = gnl_trim(fd, "\n");
 		line++;
 	}
+	map[line] = NULL;
 	close(fd);
 	return (map);
+}
+
+void	*set_entities_map(char	**map, t_entities *entities)
+{
+	int	y;
+	int	x;
+	
+	y = 0;
+	entities->player->position = v_zero();
+	while(map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'P')
+			{
+				entities->player->position = v_init(x, y);
+				map[y][x] = '0';
+			}
+			x++;	
+		}
+		y++;
+	}
+	return ((void*)1);
 }
 
 char	*gnl_trim(int fd, char const *set)
