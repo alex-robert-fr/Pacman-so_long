@@ -42,6 +42,7 @@ typedef enum e_elements
 	WALL = '1',
 	EMPTY = '0',
 	PLAYER = 'P',
+	BLINKY = 'B',
 }	t_elements;
 
 typedef struct s_sprite
@@ -104,6 +105,7 @@ typedef struct s_entity
 typedef struct s_entities
 {
 	t_entity	*player;
+	t_entity	*blinky;
 }	t_entities;
 
 typedef struct s_game {
@@ -127,7 +129,7 @@ void		put_map_sprite_to_window(t_window win, t_sprite *sprite, int x, int y);
 void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 void		*set_entities_map(char	**map, t_entities *entities);
-void		*set_spawn_entity(t_window window, t_entity *entity);
+void		*set_spawn_entity(t_window window, t_entity *entity, t_elements element);
 void		loop_time(t_game *game);
 int			render_next_frame(t_game *game);
 t_vector	v_zero();
