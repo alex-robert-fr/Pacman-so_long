@@ -81,14 +81,14 @@ typedef struct s_map
 	t_sprites	*sprites;
 }	t_map;
 
-typedef struct s_player
+typedef struct s_entity
 {
 	t_vector	position;
-}	t_player;
+}	t_entity;
 
 typedef struct s_entities
 {
-	t_player	*player;
+	t_entity	*player;
 }	t_entities;
 
 typedef struct s_game {
@@ -110,6 +110,7 @@ void		put_map_sprite_to_window(t_window win, t_sprite *sprite, int x, int y);
 void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 void		*set_entities_map(char	**map, t_entities *entities);
+// void		*set_spawn_entity(t_entities *entities, )
 t_vector	v_zero();
 t_vector	v_init(int x, int y);
 t_game		*check_file(char *map_file);
