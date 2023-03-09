@@ -27,6 +27,7 @@ int	start(char *map_file)
 {
 	t_game		*game;
 
+	// game = init_game();
 	game = check_file(map_file);
 	if (!game->map)
 		return (1);
@@ -37,7 +38,18 @@ int	start(char *map_file)
 	if (!set_spawn_entity(*game->window, game->entities->player))
 		return (1);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
+	mlx_loop_hook(game->window->mlx, render_next_frame, game);
 	if (mlx_loop(game->window->mlx))
 		return (1);
 	return(0);
 }
+
+int	render_next_frame(t_game *game)
+{
+	loop_time(game);
+}
+
+// t_game	*init_game()
+// {
+
+// }

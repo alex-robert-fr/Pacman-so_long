@@ -5,7 +5,8 @@ SRC		=	main.c
 MAP_SRC		=	./map/check_map.c \
 				./map/generate_map.c
 ENGINE_SRC	=	./engine/vector.c \
-				./engine/images.c
+				./engine/images.c \
+				./engine/time.c
 WIN_SRC		=	./window/window.c
 ENTITY_SRC	=	./entities/player.c
 LIBFT_PATH	=	$(LIB_PATH)libft

@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/09 16:30:20 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:16:13 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ t_game	*check_file(char *map_file)
 	t_game	*game;
 
 	game = ft_calloc(sizeof(t_game), 1);
+	game->time = ft_calloc(sizeof(t_time), 1);
+	game->time->previous_time = clock();
+	game->time->lag = 0;
 	game->entities = ft_calloc(sizeof(t_entities), 1);
 	game->entities->player = ft_calloc(sizeof(t_entity), 1);
 	if (check_path(map_file))

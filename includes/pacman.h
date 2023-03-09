@@ -5,8 +5,18 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h> 
+#include <time.h>
 #include "../lib/libft/libft.h"
 #include "../lib/get_next_line/get_next_line.h"
+
+typedef struct s_time
+{
+	int	current_time;
+	int	previous_time;
+	int	elapsed_time;
+	int	lag;
+}	t_time;
+
 
 typedef struct s_vector
 {
@@ -100,8 +110,10 @@ typedef struct s_game {
 	t_window	*window;
 	t_map		*map;
 	t_entities	*entities;
+	t_time		*time;
 }	t_game;
 
+// t_game		*init_game();
 int			start(char *map_file);
 int			mlx_loop(void *mlx);
 int			ft_close(t_game *game);
@@ -116,6 +128,8 @@ void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 void		*set_entities_map(char	**map, t_entities *entities);
 void		*set_spawn_entity(t_window window, t_entity *entity);
+void		loop_time(t_game *game);
+int			render_next_frame(t_game *game);
 t_vector	v_zero();
 t_vector	v_init(int x, int y);
 t_game		*check_file(char *map_file);
