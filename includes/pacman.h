@@ -116,6 +116,7 @@ typedef struct s_map
 typedef struct s_entity
 {
 	t_vector	position;
+	int			index_anim;
 	union
 	{
 		void			*sprite;
@@ -145,6 +146,7 @@ int			mlx_loop(void *mlx);
 int			ft_close(t_game *game);
 int			check_path(char *path);
 int			check_wall(char *str, int len, t_walls wall);
+void		*anim_gost(t_window window, t_entity *entity);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);

@@ -51,6 +51,8 @@ int			ft_close(t_game *game)
 	mlx_destroy_image(game->window->mlx, game->map->sprites->spxxx.original);
 	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.sprite);
 	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost->one.original);
+	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost->two.original);
+	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost->three.original);
 	mlx_destroy_image(game->window->mlx, game->entities->inky->u_sprites.sprite);
 	mlx_destroy_image(game->window->mlx, game->entities->pinky->u_sprites.sprite);
 	mlx_destroy_image(game->window->mlx, game->entities->clyde->u_sprites.sprite);
