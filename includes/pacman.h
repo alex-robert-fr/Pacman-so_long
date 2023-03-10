@@ -15,6 +15,7 @@ typedef struct s_time
 	int	previous_time;
 	int	elapsed_time;
 	int	lag;
+	int	loop_anim;
 }	t_time;
 
 
@@ -48,46 +49,63 @@ typedef enum e_elements
 	CLYDE = 'C',
 }	t_elements;
 
-typedef struct s_sprite
+typedef struct s_sprite_map
 {
 	void	*original;
 	void	*white;
-}	t_sprite;
+}	t_sprite_map;
 
 typedef struct s_sprites
 {
-	t_sprite	sp0_0;
-	t_sprite	sp0_1;
-	t_sprite	sp1_0;
-	t_sprite	sp2_0;
-	t_sprite	sp2_2;
-	t_sprite	sp3_0;
-	t_sprite	sp3_2;
-	t_sprite	sp4_0;
-	t_sprite	sp4_1;
-	t_sprite	sp4_2;
-	t_sprite	sp5_0;
-	t_sprite	sp5_2;
-	t_sprite	sp6_0;
-	t_sprite	sp6_1;
-	t_sprite	sp7_0;
-	t_sprite	sp7_1;
-	t_sprite	sp8_0;
-	t_sprite	sp8_1;
-	t_sprite	sp9_0;
-	t_sprite	sp9_1;
-	t_sprite	sp9_2;
-	t_sprite	sp10_0;
-	t_sprite	sp10_1;
-	t_sprite	sp10_2;
-	t_sprite	sp12_2;
-	t_sprite	sp11_2;
-	t_sprite	sp12_3;
-	t_sprite	sp13_0;
-	t_sprite	sp13_3;
-	t_sprite	sp14_0;
-	t_sprite	spxxx;
+	t_sprite_map	sp0_0;
+	t_sprite_map	sp0_1;
+	t_sprite_map	sp1_0;
+	t_sprite_map	sp2_0;
+	t_sprite_map	sp2_2;
+	t_sprite_map	sp3_0;
+	t_sprite_map	sp3_2;
+	t_sprite_map	sp4_0;
+	t_sprite_map	sp4_1;
+	t_sprite_map	sp4_2;
+	t_sprite_map	sp5_0;
+	t_sprite_map	sp5_2;
+	t_sprite_map	sp6_0;
+	t_sprite_map	sp6_1;
+	t_sprite_map	sp7_0;
+	t_sprite_map	sp7_1;
+	t_sprite_map	sp8_0;
+	t_sprite_map	sp8_1;
+	t_sprite_map	sp9_0;
+	t_sprite_map	sp9_1;
+	t_sprite_map	sp9_2;
+	t_sprite_map	sp10_0;
+	t_sprite_map	sp10_1;
+	t_sprite_map	sp10_2;
+	t_sprite_map	sp12_2;
+	t_sprite_map	sp11_2;
+	t_sprite_map	sp12_3;
+	t_sprite_map	sp13_0;
+	t_sprite_map	sp13_3;
+	t_sprite_map	sp14_0;
+	t_sprite_map	spxxx;
 }	t_sprites;
+
+typedef struct s_sprite_gost
+{
+	void	*original;
+	void	*blue;
+	void	*white;
+}	t_sprite_gost;
+
+
+typedef struct s_gost_anim
+{
+	t_sprite_gost	one;
+	t_sprite_gost	two;
+	t_sprite_gost	three;
+}	t_gost_anim;
+
+
 typedef struct s_map
 {
 	t_vector	size;
@@ -100,8 +118,8 @@ typedef struct s_entity
 	t_vector	position;
 	union
 	{
-		void		*sprite;
-		t_sprite	anim;
+		void			*sprite;
+		t_gost_anim		*gost;
 	}	u_sprites;
 }	t_entity;
 
@@ -131,7 +149,7 @@ char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
 void		*generate_map(t_map *map, t_window window);
-void		put_map_sprite_to_window(t_window win, t_sprite *sprite, int x, int y);
+void		put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y);
 void		*mlx_init();
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 void		*set_entities_map(char	**map, t_entities *entities);

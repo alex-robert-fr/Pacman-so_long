@@ -130,7 +130,7 @@ void	*generate_map(t_map *map, t_window window)
 	return ((void *)1);
 }
 
-void	put_map_sprite_to_window(t_window win, t_sprite *sprite, int x, int y)
+void	put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y)
 {
 	mlx_put_image_to_window(win.mlx, win.win, sprite, (x * 24), (y * 24));
 }

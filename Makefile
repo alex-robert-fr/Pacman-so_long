@@ -8,7 +8,7 @@ ENGINE_SRC	=	./engine/vector.c \
 				./engine/images.c \
 				./engine/time.c
 WIN_SRC		=	./window/window.c
-ENTITY_SRC	=	./entities/player.c
+ENTITY_SRC	=	./entities/entity.c
 LIBFT_PATH	=	$(LIB_PATH)libft
 LIBFT_NAME	=	libft.a
 MLX_PATH	=	$(LIB_PATH)minilibx-linux

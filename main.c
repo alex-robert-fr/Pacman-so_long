@@ -64,9 +64,11 @@ t_game	*init_game()
 	game->time = ft_calloc(sizeof(t_time), 1);
 	game->time->previous_time = clock();
 	game->time->lag = 0;
+	game->time->loop_anim = 0;
 	game->entities = ft_calloc(sizeof(t_entities), 1);
 	game->entities->player = ft_calloc(sizeof(t_entity), 1);
 	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->blinky->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 	game->entities->inky = ft_calloc(sizeof(t_entity), 1);
 	game->entities->pinky = ft_calloc(sizeof(t_entity), 1);
 	game->entities->clyde = ft_calloc(sizeof(t_entity), 1);
