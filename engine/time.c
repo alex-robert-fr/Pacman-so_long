@@ -13,6 +13,8 @@ void	loop_time(t_game *game)
 		{
 			anim_gost(*game->window, game->entities->blinky);
 			anim_gost(*game->window, game->entities->inky);
+			anim_gost(*game->window, game->entities->pinky);
+			anim_gost(*game->window, game->entities->clyde);
 			printf("\033[31mMA BITE !\033[0m\n");
 		}
 		game->time->loop_anim++;
