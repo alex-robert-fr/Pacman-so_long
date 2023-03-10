@@ -105,6 +105,14 @@ typedef struct s_gost_anim
 	t_sprite_gost	three;
 }	t_gost_anim;
 
+typedef struct s_player_anim
+{
+	void	*one;
+	void	*two;
+	void	*three;
+	void	*four;
+}	t_player_anim;
+
 
 typedef struct s_map
 {
@@ -121,6 +129,7 @@ typedef struct s_entity
 	{
 		void			*sprite;
 		t_gost_anim		*gost;
+		t_player_anim	*player;
 	}	u_sprites;
 }	t_entity;
 
@@ -153,6 +162,7 @@ void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
 void		*generate_map(t_map *map, t_window window);
 void		put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y);
 void		*mlx_init();
+void		*anim_player(t_window window, t_entity *entity);
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 void		*set_entities_map(char	**map, t_entities *entities);
 void		*set_spawn_entity(t_window window, t_entity *entity, t_elements element);

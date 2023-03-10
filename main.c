@@ -66,7 +66,10 @@ t_game	*init_game()
 	game->time->lag = 0;
 	game->time->loop_anim = 0;
 	game->entities = ft_calloc(sizeof(t_entities), 1);
+
 	game->entities->player = ft_calloc(sizeof(t_entity), 1);
+	game->entities->player->index_anim = 0;
+	game->entities->player->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
 
 	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
 	game->entities->blinky->index_anim = 0;

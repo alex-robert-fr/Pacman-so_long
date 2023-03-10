@@ -17,6 +17,8 @@ void	loop_time(t_game *game)
 			anim_gost(*game->window, game->entities->clyde);
 			printf("\033[31mMA BITE !\033[0m\n");
 		}
+		if (game->time->loop_anim % (60 / 20) == 0)
+			anim_player(*game->window, game->entities->player);
 		game->time->loop_anim++;
 		if (game->time->loop_anim > 59)
 			game->time->loop_anim = 0;

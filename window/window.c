@@ -49,7 +49,10 @@ int			ft_close(t_game *game)
 	mlx_destroy_image(game->window->mlx, game->map->sprites->sp13_3.original);
 	mlx_destroy_image(game->window->mlx, game->map->sprites->sp14_0.original);
 	mlx_destroy_image(game->window->mlx, game->map->sprites->spxxx.original);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.sprite);
+	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->one);
+	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->two);
+	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->three);
+	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->four);
 	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost->one.original);
 	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost->two.original);
 	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost->three.original);
@@ -59,7 +62,9 @@ int			ft_close(t_game *game)
 	mlx_destroy_image(game->window->mlx, game->entities->pinky->u_sprites.gost->one.original);
 	mlx_destroy_image(game->window->mlx, game->entities->pinky->u_sprites.gost->two.original);
 	mlx_destroy_image(game->window->mlx, game->entities->pinky->u_sprites.gost->three.original);
-	mlx_destroy_image(game->window->mlx, game->entities->clyde->u_sprites.sprite);
+	mlx_destroy_image(game->window->mlx, game->entities->clyde->u_sprites.gost->one.original);
+	mlx_destroy_image(game->window->mlx, game->entities->clyde->u_sprites.gost->two.original);
+	mlx_destroy_image(game->window->mlx, game->entities->clyde->u_sprites.gost->three.original);
 	mlx_destroy_window(game->window->mlx, game->window->win);
 	mlx_destroy_display(game->window->mlx);
 	free(game->window->mlx);
@@ -74,6 +79,7 @@ int			ft_close(t_game *game)
 	free(game->map->sprites);
 	free(game->map);
 	free(game->time);
+	free(game->entities->player->u_sprites.player);
 	free(game->entities->player);
 	free(game->entities->blinky->u_sprites.gost);
 	free(game->entities->blinky);
@@ -81,6 +87,7 @@ int			ft_close(t_game *game)
 	free(game->entities->inky);
 	free(game->entities->pinky->u_sprites.gost);
 	free(game->entities->pinky);
+	free(game->entities->clyde->u_sprites.gost);
 	free(game->entities->clyde);
 	free(game->entities);
 	free(game);
