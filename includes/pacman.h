@@ -21,8 +21,8 @@ typedef struct s_time
 
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }	t_vector;
 
 typedef struct s_window
