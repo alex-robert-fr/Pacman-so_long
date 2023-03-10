@@ -20,7 +20,7 @@ void	loop_time(t_game *game)
 		}
 		if (game->time->loop_anim % (60 / 30) == 0)
 		{
-			game->entities->player->position.x += 0.17;
+			// game->entities->player->position.x += 0.17;
 			anim_player(*game->window, game->entities->player);
 		}
 		game->time->loop_anim++;
