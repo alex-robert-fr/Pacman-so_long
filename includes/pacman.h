@@ -121,7 +121,7 @@ typedef struct s_game {
 	t_time		*time;
 }	t_game;
 
-// t_game		*init_game();
+t_game		*init_game();
 int			start(char *map_file);
 int			mlx_loop(void *mlx);
 int			ft_close(t_game *game);
@@ -140,7 +140,7 @@ void		loop_time(t_game *game);
 int			render_next_frame(t_game *game);
 t_vector	v_zero();
 t_vector	v_init(int x, int y);
-t_game		*check_file(char *map_file);
+void		*check_file(char *map_file, t_game *game);
 t_map		*read_and_check_map(char *map_file);
 t_sprites	*import_imgs(t_window window);
 t_window	*create_window(int x, int y, char *title);

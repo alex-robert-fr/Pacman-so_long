@@ -27,9 +27,8 @@ int	start(char *map_file)
 {
 	t_game		*game;
 
-	// game = init_game();
-	game = check_file(map_file);
-	if (!game->map)
+	game = init_game();
+	if (!check_file(map_file, game))
 		return (1);
 	game->window = create_window(game->map->size.x * 24, game->map->size.y * 24, "Pacman");
 	usleep(10000);
@@ -57,7 +56,10 @@ int	render_next_frame(t_game *game)
 	loop_time(game);
 }
 
-// t_game	*init_game()
-// {
+t_game	*init_game()
+{
+	t_game	*game;
 
-// }
+	game = ft_calloc(sizeof(t_game), 1);
+	return (game);
+}

@@ -6,17 +6,15 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/10 15:10:10 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:17:17 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pacman.h"
 
-t_game	*check_file(char *map_file)
+void	*check_file(char *map_file, t_game *game)
 {
-	t_game	*game;
 
-	game = ft_calloc(sizeof(t_game), 1);
 	game->time = ft_calloc(sizeof(t_time), 1);
 	game->time->previous_time = clock();
 	game->time->lag = 0;
@@ -27,16 +25,16 @@ t_game	*check_file(char *map_file)
 	game->entities->pinky = ft_calloc(sizeof(t_entity), 1);
 	game->entities->clyde = ft_calloc(sizeof(t_entity), 1);
 	if (check_path(map_file))
-		return (0);
+		return (NULL);
 	game->map = read_and_check_map(map_file);
 	if (!game->map)
-		return (0);
+		return (NULL);
 	game->map->map = set_map_in_array(*game->map, map_file);
 	if (!game->map)
-		return (0);
+		return (NULL);
 	if (!set_entities_map(game->map->map, game->entities))
-		return (0);
-	return (game);
+		return (NULL);
+	return ((void*)1);
 }
 
 int	check_path(char *map_file)
