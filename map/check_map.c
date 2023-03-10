@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/10 15:17:17 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:20:42 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 void	*check_file(char *map_file, t_game *game)
 {
-
-	game->time = ft_calloc(sizeof(t_time), 1);
-	game->time->previous_time = clock();
-	game->time->lag = 0;
-	game->entities = ft_calloc(sizeof(t_entities), 1);
-	game->entities->player = ft_calloc(sizeof(t_entity), 1);
-	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
-	game->entities->inky = ft_calloc(sizeof(t_entity), 1);
-	game->entities->pinky = ft_calloc(sizeof(t_entity), 1);
-	game->entities->clyde = ft_calloc(sizeof(t_entity), 1);
 	if (check_path(map_file))
 		return (NULL);
 	game->map = read_and_check_map(map_file);
@@ -70,7 +60,7 @@ int	check_wall(char *str, int len, t_walls wall)
 		{
 			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
-			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE)
+			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE) //! REFACTOR
 					return (1);
 			i++;
 		}

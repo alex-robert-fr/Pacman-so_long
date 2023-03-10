@@ -61,5 +61,14 @@ t_game	*init_game()
 	t_game	*game;
 
 	game = ft_calloc(sizeof(t_game), 1);
+	game->time = ft_calloc(sizeof(t_time), 1);
+	game->time->previous_time = clock();
+	game->time->lag = 0;
+	game->entities = ft_calloc(sizeof(t_entities), 1);
+	game->entities->player = ft_calloc(sizeof(t_entity), 1);
+	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->inky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->pinky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->clyde = ft_calloc(sizeof(t_entity), 1);
 	return (game);
 }
