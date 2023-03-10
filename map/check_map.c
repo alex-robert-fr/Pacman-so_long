@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/09 18:09:51 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:10:10 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_game	*check_file(char *map_file)
 	game->entities->player = ft_calloc(sizeof(t_entity), 1);
 	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
 	game->entities->inky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->pinky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->clyde = ft_calloc(sizeof(t_entity), 1);
 	if (check_path(map_file))
 		return (0);
 	game->map = read_and_check_map(map_file);
@@ -70,7 +72,7 @@ int	check_wall(char *str, int len, t_walls wall)
 		{
 			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
-			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY)
+			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE)
 					return (1);
 			i++;
 		}
@@ -172,6 +174,8 @@ void	*set_entities_map(char	**map, t_entities *entities)
 	entities->player->position = v_zero();
 	entities->blinky->position = v_zero();
 	entities->inky->position = v_zero();
+	entities->pinky->position = v_zero();
+	entities->clyde->position = v_zero();
 	while(map[y])
 	{
 		x = 0;
@@ -190,6 +194,16 @@ void	*set_entities_map(char	**map, t_entities *entities)
 			if (map[y][x] == 'I')
 			{
 				entities->inky->position = v_init(x, y);
+				map[y][x] = '0';
+			}
+			if (map[y][x] == 'p')
+			{
+				entities->pinky->position = v_init(x, y);
+				map[y][x] = '0';
+			}
+			if (map[y][x] == 'C')
+			{
+				entities->clyde->position = v_init(x, y);
 				map[y][x] = '0';
 			}
 			x++;	

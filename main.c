@@ -41,6 +41,10 @@ int	start(char *map_file)
 		return (1);
 	if (!set_spawn_entity(*game->window, game->entities->inky, INKY))
 		return (1);
+	if (!set_spawn_entity(*game->window, game->entities->pinky, PINKY))
+		return (1);
+	if (!set_spawn_entity(*game->window, game->entities->clyde, CLYDE))
+		return (1);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
 	mlx_loop_hook(game->window->mlx, render_next_frame, game);
 	if (mlx_loop(game->window->mlx))

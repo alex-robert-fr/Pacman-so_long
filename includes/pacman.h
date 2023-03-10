@@ -44,6 +44,8 @@ typedef enum e_elements
 	PLAYER = 'P',
 	BLINKY = 'B',
 	INKY = 'I',
+	PINKY = 'p',
+	CLYDE = 'C',
 }	t_elements;
 
 typedef struct s_sprite
@@ -108,6 +110,8 @@ typedef struct s_entities
 	t_entity	*player;
 	t_entity	*blinky;
 	t_entity	*inky;
+	t_entity	*pinky;
+	t_entity	*clyde;
 }	t_entities;
 
 typedef struct s_game {
