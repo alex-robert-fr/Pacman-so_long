@@ -88,6 +88,7 @@ typedef struct s_sprites
 	t_sprite_map	sp13_3;
 	t_sprite_map	sp14_0;
 	t_sprite_map	spxxx;
+	t_sprite_map	black;
 }	t_sprites;
 
 typedef struct s_sprite_gost

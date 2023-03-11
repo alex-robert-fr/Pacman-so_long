@@ -20,13 +20,13 @@ void	loop_time(t_game *game)
 		}
 		if (game->time->loop_anim % (60 / 30) == 0)
 		{
-			// game->entities->player->position.x += 0.17;
+			game->entities->player->position.x += 0.17;
 			anim_player(*game->window, game->entities->player);
+			mlx_put_image_to_window(game->window->mlx, game->window->win, game->map->sprites->black.original, (game->entities->player->position.x * 24) - 29, (game->entities->player->position.y * 24));
 		}
 		game->time->loop_anim++;
 		if (game->time->loop_anim > 59)
 			game->time->loop_anim = 0;
 		game->time->lag -= (1000000 / 60);
 	}
-	
 }

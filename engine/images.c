@@ -38,5 +38,6 @@ t_sprites	*import_imgs(t_window window)
 	sprites->sp13_3.original = mlx_xpm_file_to_image(window.mlx, "assets/map13_3.xpm", &size, &size);
 	sprites->sp14_0.original = mlx_xpm_file_to_image(window.mlx, "assets/map14_0.xpm", &size, &size);
 	sprites->spxxx.original = mlx_xpm_file_to_image(window.mlx, "assets/no_valid.xpm", &size, &size);
+	sprites->black.original = mlx_xpm_file_to_image(window.mlx, "assets/black.xpm", &size, &size);
 	return (sprites);
 }
