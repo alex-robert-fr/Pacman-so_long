@@ -39,13 +39,14 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	return ((void*)1);
 }
 
-void	*anim_gost(t_window window, t_entity *entity)
+void	*anim_gost(t_window window, t_entity *entity, void *black_sprite)
 {
 	int	pos_x;
 	int	pos_y;
 
 	pos_x = (entity->position.x * 24) - 5;
 	pos_y = (entity->position.y * 24) - 5;
+	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x * 24) - 29, (entity->position.y * 24) - 5);
 	if (entity->index_anim == 0)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->one.original, pos_x, pos_y);
@@ -63,7 +64,7 @@ void	*anim_gost(t_window window, t_entity *entity)
 	}
 }
 
-void	*anim_player(t_window window, t_entity *entity)
+void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 {
 	int	pos_x;
 	int	pos_y;
@@ -71,6 +72,7 @@ void	*anim_player(t_window window, t_entity *entity)
 
 	pos_x = (entity->position.x * 24) - 5;
 	pos_y = (entity->position.y * 24) - 5;
+	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x * 24) - 29, (entity->position.y * 24) - 5);
 	if (entity->index_anim == 0)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.player->one, pos_x, pos_y);
@@ -106,4 +108,17 @@ void	*anim_player(t_window window, t_entity *entity)
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.player->two, pos_x, pos_y);
 		entity->index_anim = 0;
 	}
+}
+
+void	*move_entity(t_map map, t_entity *entity)
+{
+	entity->position.x += 0.10;
+	check_direction(map, entity);
+}
+
+void	*check_direction(t_map map, t_entity *entity)
+{
+	printf("%f == %f\n", entity->position.x, (entity->position.x));
+	if (entity->position.x == ceilf(entity->position.x))
+		printf("PASS\n");
 }
