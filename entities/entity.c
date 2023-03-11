@@ -11,6 +11,8 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 		entity->u_sprites.player->two = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_1.xpm", &size, &size);
 		entity->u_sprites.player->three = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_2.xpm", &size, &size);
 		entity->u_sprites.player->four = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_3.xpm", &size, &size);
+		entity->position.x *= 24;
+		entity->position.y *= 24;
 	}
 	else if (elements == BLINKY)
 	{
@@ -70,9 +72,9 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 	int	pos_y;
 
 
-	pos_x = (entity->position.x * 24) - 5;
-	pos_y = (entity->position.y * 24) - 5;
-	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x * 24) - 29, (entity->position.y * 24) - 5);
+	pos_x = (entity->position.x - 5);
+	pos_y = (entity->position.y - 5);
+	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
 	if (entity->index_anim == 0)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.player->one, pos_x, pos_y);
@@ -112,13 +114,13 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 
 void	*move_entity(t_map map, t_entity *entity)
 {
-	entity->position.x += 0.10;
+	entity->position.x += 1;
 	check_direction(map, entity);
 }
 
 void	*check_direction(t_map map, t_entity *entity)
 {
-	printf("%f == %f\n", entity->position.x, (entity->position.x));
+	// printf("%f == %f\n", entity->position.x, (entity->position.x));
 	if (entity->position.x == ceilf(entity->position.x))
 		printf("PASS\n");
 }

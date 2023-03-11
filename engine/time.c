@@ -1,5 +1,5 @@
 #include "../includes/pacman.h"
-#define FRAME_RATE 10
+#define FRAME_RATE 5
 
 void	loop_time(t_game *game)
 {
@@ -13,7 +13,7 @@ void	loop_time(t_game *game)
 		{
 			printf("Player: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
 			// printf("Pinky: [%i, %i]\n", game->entities->pinky->position.x, game->entities->pinky->position.y);
-			// move_entity(*game->map, game->entities->pinky);
+			move_entity(*game->map, game->entities->pinky);
 			move_entity(*game->map, game->entities->player);
 			anim_gost(*game->window, game->entities->pinky, game->map->sprites->black.original);
 			anim_gost(*game->window, game->entities->blinky, game->map->sprites->black.original);

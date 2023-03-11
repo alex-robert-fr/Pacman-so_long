@@ -32,8 +32,8 @@ int	start(char *map_file)
 		return (1);
 	game->window = create_window(game->map->size.x * 24, game->map->size.y * 24, "Pacman");
 	usleep(10000);
-	printf("\nPLAYER: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
-	printf("\nPINKY: [%i, %i]\n", game->entities->pinky->position.x, game->entities->pinky->position.y);
+	// printf("\nPLAYER: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
+	// printf("\nPINKY: [%i, %i]\n", game->entities->pinky->position.x, game->entities->pinky->position.y);
 	generate_map(game->map, *game->window);
 	if (!set_spawn_entity(*game->window, game->entities->player, PLAYER))
 		return (1);
