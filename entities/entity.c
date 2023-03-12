@@ -48,7 +48,19 @@ void	*anim_gost(t_window window, t_entity *entity, void *black_sprite)
 {
 	int	pos_x;
 	int	pos_y;
+	int	rand_dir;
 
+
+	rand_dir = (rand() % (3 - 0 + 1)) + 0;
+	// printf("-----------------%i\n", rand_dir);
+	if (rand_dir == 0)
+		entity->next_direction = v_init(1, 0);
+	if (rand_dir == 1)
+		entity->next_direction = v_init(-1, 0);
+	if (rand_dir == 2)
+		entity->next_direction = v_init(0, 1);
+	if (rand_dir == 3)
+		entity->next_direction = v_init(0, -1);
 	pos_x = (entity->position.x - 5);
 	pos_y = (entity->position.y - 5);
 	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
@@ -117,26 +129,38 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 
 void	*move_entity(t_map map, t_entity *entity)
 {
+	float	x_pos = entity->position.x / 24;
+	float	y_pos = entity->position.y / 24;
+
 	check_direction(map, entity);
 	if (entity->direction.x > 0)
 	{
-		entity->position.x += 1;
-		entity->position.y += 0;
+		if (map.map[(int)y_pos][(int)x_pos + 1] == '1')
+			entity->position.x += 0;
+		else
+			entity->position.x += 1;
+
 	}
 	if (entity->direction.x < 0)
 	{
-		entity->position.x -= 1;
-		entity->position.y += 0;
+		if (map.map[(int)y_pos][(int)ceilf(x_pos) - 1] == '1')
+			entity->position.x -= 0;
+		else
+			entity->position.x -= 1;
 	}
 	if (entity->direction.y > 0)
 	{
-		entity->position.x += 0;
-		entity->position.y += 1;
+		if (map.map[(int)y_pos + 1][(int)x_pos] == '1')
+			entity->position.y += 0;
+		else
+			entity->position.y += 1;
 	}
 	if (entity->direction.y < 0)
 	{
-		entity->position.x += 0;
-		entity->position.y -= 1;
+		if (map.map[(int)ceilf(y_pos) - 1][(int)x_pos] == '1')
+			entity->position.y -= 0;
+		else
+			entity->position.y -= 1;
 	}
 }
 
