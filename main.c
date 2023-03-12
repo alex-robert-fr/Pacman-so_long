@@ -47,6 +47,7 @@ int	start(char *map_file)
 		return (1);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
 	mlx_loop_hook(game->window->mlx, render_next_frame, game);
+	mlx_key_hook(game->window->win, keyboard, game->entities->player);
 	if (mlx_loop(game->window->mlx))
 		return (1);
 	return(0);

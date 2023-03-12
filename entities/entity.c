@@ -7,6 +7,8 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	size = 33;
 	entity->position.x *= 24;
 	entity->position.y *= 24;
+	entity->direction = v_init(1, 0);
+	entity->next_direction = v_init(0, 1);
 	if (elements == PLAYER)
 	{
 		entity->u_sprites.player->one = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_0.xpm", &size, &size);
@@ -116,23 +118,54 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 void	*move_entity(t_map map, t_entity *entity)
 {
 	check_direction(map, entity);
+	if (entity->direction.x > 0)
+	{
+		entity->position.x += 1;
+		entity->position.y += 0;
+	}
+	if (entity->direction.x < 0)
+	{
+		entity->position.x -= 1;
+		entity->position.y += 0;
+	}
+	if (entity->direction.y > 0)
+	{
+		entity->position.x += 0;
+		entity->position.y += 1;
+	}
+	if (entity->direction.y < 0)
+	{
+		entity->position.x += 0;
+		entity->position.y -= 1;
+	}
 }
 
 void	*check_direction(t_map map, t_entity *entity)
 {
-	printf("%f == %f\n", entity->position.x / 24, ceilf(entity->position.x / 24));
-	if ((entity->position.x / 24) == ceilf(entity->position.x / 24))
-		printf("PASS\n");
-	if (map.map[((int)entity->position.y / 24) + 1][(int)entity->position.x / 24] == '0')
+	float	x_pos = entity->position.x / 24;
+	float	y_pos = entity->position.y / 24;
+	if (entity->next_direction.y > 0)
 	{
-		entity->position.y += 1;
-		entity->position.x += 0;
+		if (map.map[(int)y_pos + 1][(int)x_pos] == '0')
+		{
+			entity->direction.x = 0;
+			entity->direction.y = 1;
+		}
 	}
-	else
-	{
-		entity->position.y += 0;
-		entity->position.x += 1;
+	// printf("%f == %f\n", entity->position.x / 24, ceilf(entity->position.x / 24));
+	// if ((entity->position.x / 24) == ceilf(entity->position.x / 24))
+	// 	printf("PASS\n");
 
-	}
+	// if (map.map[((int)entity->position.y / 24) + 1][(int)entity->position.x / 24] == '0')
+	// {
+	// 	entity->position.y += 1;
+	// 	entity->position.x += 0;
+	// }
+	// else
+	// {
+	// 	entity->position.y += 0;
+	// 	entity->position.x += 1;
+
+	// }
 
 }
