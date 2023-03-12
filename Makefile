@@ -8,7 +8,8 @@ ENGINE_SRC	=	./engine/vector.c \
 				./engine/images.c \
 				./engine/time.c   \
 				./engine/keyboard.c
-WIN_SRC		=	./window/window.c
+WIN_SRC		=	./window/window.c \
+				./window/ui.c
 ENTITY_SRC	=	./entities/entity.c
 LIBFT_PATH	=	$(LIB_PATH)libft
 LIBFT_NAME	=	libft.a

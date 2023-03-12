@@ -173,6 +173,7 @@ void		*set_entities_map(char	**map, t_entities *entities);
 void		*set_spawn_entity(t_window window, t_entity *entity, t_elements element);
 void		loop_time(t_game *game);
 int			render_next_frame(t_game *game);
+void    	*display_ui(t_game *game);
 void		*move_entity(t_map map, t_entity *entity);
 int			keyboard(int keycode, t_entity *player);
 void		*check_direction(t_map map, t_entity *entity);
