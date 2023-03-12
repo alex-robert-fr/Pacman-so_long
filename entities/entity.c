@@ -32,6 +32,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	}
 	else if (elements == PINKY)
 	{
+		entity->speed = 2;
 		entity->u_sprites.gost->one.original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_0.xpm", &size, &size);
 		entity->u_sprites.gost->two.original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_1.xpm", &size, &size);
 		entity->u_sprites.gost->three.original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_2.xpm", &size, &size);
@@ -90,7 +91,15 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 
 	pos_x = (entity->position.x - 5);
 	pos_y = (entity->position.y - 5);
-	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
+
+	if (entity->direction.x > 0)
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
+	if (entity->direction.x < 0)
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x + 28), (entity->position.y - 5));
+	if (entity->direction.y > 0)
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 5), (entity->position.y - 29));
+	if (entity->direction.y < 0)
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 5), (entity->position.y + 28));
 	if (entity->index_anim == 0)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.player->one, pos_x, pos_y);
@@ -201,20 +210,4 @@ void	*check_direction(t_map map, t_entity *entity)
 			entity->direction.y = 0;
 		}
 	}
-	// printf("%f == %f\n", entity->position.x / 24, ceilf(entity->position.x / 24));
-	// if ((entity->position.x / 24) == ceilf(entity->position.x / 24))
-	// 	printf("PASS\n");
-
-	// if (map.map[((int)entity->position.y / 24) + 1][(int)entity->position.x / 24] == '0')
-	// {
-	// 	entity->position.y += 1;
-	// 	entity->position.x += 0;
-	// }
-	// else
-	// {
-	// 	entity->position.y += 0;
-	// 	entity->position.x += 1;
-
-	// }
-
 }
