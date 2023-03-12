@@ -146,7 +146,7 @@ void	*check_direction(t_map map, t_entity *entity)
 	float	y_pos = entity->position.y / 24;
 	if (entity->next_direction.y > 0)
 	{
-		if (map.map[(int)y_pos + 1][(int)x_pos] == '0')
+		if (map.map[(int)y_pos + 1][(int)x_pos] == '0' && x_pos == ceilf(x_pos))
 		{
 			entity->direction.x = 0;
 			entity->direction.y = 1;
