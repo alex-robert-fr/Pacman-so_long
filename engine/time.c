@@ -1,5 +1,5 @@
 #include "../includes/pacman.h"
-#define FRAME_RATE 5
+#define FRAME_RATE 25
 
 void	loop_time(t_game *game)
 {

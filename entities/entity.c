@@ -5,14 +5,15 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	int	size;
 
 	size = 33;
+	entity->position.x *= 24;
+	entity->position.y *= 24;
 	if (elements == PLAYER)
 	{
 		entity->u_sprites.player->one = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_0.xpm", &size, &size);
 		entity->u_sprites.player->two = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_1.xpm", &size, &size);
 		entity->u_sprites.player->three = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_2.xpm", &size, &size);
 		entity->u_sprites.player->four = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_3.xpm", &size, &size);
-		entity->position.x *= 24;
-		entity->position.y *= 24;
+		
 	}
 	else if (elements == BLINKY)
 	{
@@ -46,9 +47,9 @@ void	*anim_gost(t_window window, t_entity *entity, void *black_sprite)
 	int	pos_x;
 	int	pos_y;
 
-	pos_x = (entity->position.x * 24) - 5;
-	pos_y = (entity->position.y * 24) - 5;
-	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x * 24) - 29, (entity->position.y * 24) - 5);
+	pos_x = (entity->position.x - 5);
+	pos_y = (entity->position.y - 5);
+	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
 	if (entity->index_anim == 0)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->one.original, pos_x, pos_y);
@@ -114,7 +115,6 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 
 void	*move_entity(t_map map, t_entity *entity)
 {
-	entity->position.x += 1;
 	check_direction(map, entity);
 }
 
@@ -123,4 +123,16 @@ void	*check_direction(t_map map, t_entity *entity)
 	printf("%f == %f\n", entity->position.x / 24, ceilf(entity->position.x / 24));
 	if ((entity->position.x / 24) == ceilf(entity->position.x / 24))
 		printf("PASS\n");
+	if (map.map[((int)entity->position.y / 24) + 1][(int)entity->position.x / 24] == '0')
+	{
+		entity->position.y += 1;
+		entity->position.x += 0;
+	}
+	else
+	{
+		entity->position.y += 0;
+		entity->position.x += 1;
+
+	}
+
 }
