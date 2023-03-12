@@ -120,7 +120,7 @@ void	*move_entity(t_map map, t_entity *entity)
 
 void	*check_direction(t_map map, t_entity *entity)
 {
-	// printf("%f == %f\n", entity->position.x, (entity->position.x));
-	if (entity->position.x == ceilf(entity->position.x))
+	printf("%f == %f\n", entity->position.x / 24, ceilf(entity->position.x / 24));
+	if ((entity->position.x / 24) == ceilf(entity->position.x / 24))
 		printf("PASS\n");
 }
