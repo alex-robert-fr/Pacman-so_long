@@ -127,6 +127,7 @@ typedef struct s_entity
 {
 	t_vector	position;
 	int			index_anim;
+	int			speed;
 	t_vector	direction;
 	t_vector	next_direction;
 	union

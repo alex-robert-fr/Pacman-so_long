@@ -11,6 +11,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	entity->next_direction = v_init(0, 1);
 	if (elements == PLAYER)
 	{
+		entity->speed = 4;
 		entity->u_sprites.player->one = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_0.xpm", &size, &size);
 		entity->u_sprites.player->two = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_1.xpm", &size, &size);
 		entity->u_sprites.player->three = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_2.xpm", &size, &size);
@@ -138,7 +139,7 @@ void	*move_entity(t_map map, t_entity *entity)
 		if (map.map[(int)y_pos][(int)x_pos + 1] == '1')
 			entity->position.x += 0;
 		else
-			entity->position.x += 1;
+			entity->position.x += entity->speed;
 
 	}
 	if (entity->direction.x < 0)
@@ -146,21 +147,21 @@ void	*move_entity(t_map map, t_entity *entity)
 		if (map.map[(int)y_pos][(int)ceilf(x_pos) - 1] == '1')
 			entity->position.x -= 0;
 		else
-			entity->position.x -= 1;
+			entity->position.x -= entity->speed;
 	}
 	if (entity->direction.y > 0)
 	{
 		if (map.map[(int)y_pos + 1][(int)x_pos] == '1')
 			entity->position.y += 0;
 		else
-			entity->position.y += 1;
+			entity->position.y += entity->speed;
 	}
 	if (entity->direction.y < 0)
 	{
 		if (map.map[(int)ceilf(y_pos) - 1][(int)x_pos] == '1')
 			entity->position.y -= 0;
 		else
-			entity->position.y -= 1;
+			entity->position.y -= entity->speed;
 	}
 }
 
