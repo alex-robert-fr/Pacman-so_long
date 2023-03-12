@@ -11,7 +11,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	entity->next_direction = v_init(0, 1);
 	if (elements == PLAYER)
 	{
-		entity->speed = 4;
+		entity->speed = 6;
 		entity->u_sprites.player->one = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_0.xpm", &size, &size);
 		entity->u_sprites.player->two = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_1.xpm", &size, &size);
 		entity->u_sprites.player->three = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_2.xpm", &size, &size);
@@ -52,17 +52,6 @@ void	*anim_gost(t_window window, t_entity *entity, void *black_sprite)
 	int	pos_y;
 	int	rand_dir;
 
-
-	rand_dir = (rand() % (3 - 0 + 1)) + 0;
-	// printf("-----------------%i\n", rand_dir);
-	if (rand_dir == 0)
-		entity->next_direction = v_init(1, 0);
-	if (rand_dir == 1)
-		entity->next_direction = v_init(-1, 0);
-	if (rand_dir == 2)
-		entity->next_direction = v_init(0, 1);
-	if (rand_dir == 3)
-		entity->next_direction = v_init(0, -1);
 	pos_x = (entity->position.x - 5);
 	pos_y = (entity->position.y - 5);
 	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
