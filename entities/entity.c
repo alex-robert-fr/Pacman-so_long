@@ -152,6 +152,30 @@ void	*check_direction(t_map map, t_entity *entity)
 			entity->direction.y = 1;
 		}
 	}
+	if (entity->next_direction.y < 0)
+	{
+		if (map.map[(int)y_pos - 1][(int)x_pos] == '0' && x_pos == ceilf(x_pos))
+		{
+			entity->direction.x = 0;
+			entity->direction.y = -1;
+		}
+	}
+	if (entity->next_direction.x > 0)
+	{
+		if (map.map[(int)y_pos][(int)x_pos + 1] == '0' && y_pos == ceilf(y_pos))
+		{
+			entity->direction.x = 1;
+			entity->direction.y = 0;
+		}
+	}
+	if (entity->next_direction.x < 0)
+	{
+		if (map.map[(int)y_pos][(int)x_pos - 1] == '0' && y_pos == ceilf(y_pos))
+		{
+			entity->direction.x = -1;
+			entity->direction.y = 0;
+		}
+	}
 	// printf("%f == %f\n", entity->position.x / 24, ceilf(entity->position.x / 24));
 	// if ((entity->position.x / 24) == ceilf(entity->position.x / 24))
 	// 	printf("PASS\n");
