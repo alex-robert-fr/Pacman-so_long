@@ -103,9 +103,10 @@ typedef struct s_sprite_gost
 
 typedef struct s_gost_anim
 {
-	t_sprite_gost	one;
-	t_sprite_gost	two;
-	t_sprite_gost	three;
+	void	*right[3];
+	void	*left[3];
+	void	*top[3];
+	void	*bottom[3];
 }	t_gost_anim;
 
 typedef struct s_player_anim
