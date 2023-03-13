@@ -13,13 +13,13 @@ void	loop_time(t_game *game)
 		{
 			printf("Player: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
 			// printf("Pinky: [%i, %i]\n", game->entities->pinky->position.x, game->entities->pinky->position.y);
-			move_entity(*game->map, game->entities->pinky);
-			move_entity(*game->map, game->entities->player);
 			anim_gost(*game->window, game->entities->pinky, game->map->sprites->black.original);
 			anim_gost(*game->window, game->entities->blinky, game->map->sprites->black.original);
 			anim_gost(*game->window, game->entities->inky, game->map->sprites->black.original);
 			anim_gost(*game->window, game->entities->clyde, game->map->sprites->black.original);
-			anim_player(*game->window, game->entities->player, game->map->sprites->black.original);
+			move_entity(*game->window, *game->map, game->entities->pinky, game->map->sprites->black);
+			move_entity(*game->window, *game->map, game->entities->player, game->map->sprites->black);
+			anim_player(*game->window, game->entities->player);
 		}
 		game->time->loop_anim++;
 		if (game->time->loop_anim > (FRAME_RATE - 1))

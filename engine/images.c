@@ -4,8 +4,12 @@ t_sprites	*import_imgs(t_window window)
 {
 	t_sprites	*sprites;
 	int		size;
+	int		black_x;
+	int		black_y;
 
 	size = 24;
+	black_x = 5;
+	black_y = 33;
 	sprites = malloc(sizeof(t_sprites));
 	sprites->sp0_0.original = mlx_xpm_file_to_image(window.mlx, "assets/map0_0.xpm", &size, &size);
 	sprites->sp0_1.original = mlx_xpm_file_to_image(window.mlx, "assets/map0_1.xpm", &size, &size);
@@ -38,6 +42,7 @@ t_sprites	*import_imgs(t_window window)
 	sprites->sp13_3.original = mlx_xpm_file_to_image(window.mlx, "assets/map13_3.xpm", &size, &size);
 	sprites->sp14_0.original = mlx_xpm_file_to_image(window.mlx, "assets/map14_0.xpm", &size, &size);
 	sprites->spxxx.original = mlx_xpm_file_to_image(window.mlx, "assets/no_valid.xpm", &size, &size);
-	sprites->black.original = mlx_xpm_file_to_image(window.mlx, "assets/black.xpm", &size, &size);
+	sprites->black.original = mlx_xpm_file_to_image(window.mlx, "assets/black_x.xpm", &black_x, &black_y);
+	sprites->black.white = mlx_xpm_file_to_image(window.mlx, "assets/black_y.xpm", &black_y, &black_x);
 	return (sprites);
 }

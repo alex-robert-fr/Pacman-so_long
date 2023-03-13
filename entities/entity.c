@@ -8,7 +8,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	entity->position.x *= 24;
 	entity->position.y *= 24;
 	entity->direction = v_init(1, 0);
-	entity->next_direction = v_init(0, 1);
+	entity->next_direction = v_init(0, 0);
 	if (elements == PLAYER)
 	{
 		entity->speed = 3;
@@ -55,24 +55,24 @@ void	*anim_gost(t_window window, t_entity *entity, void *black_sprite)
 	pos_x = (entity->position.x - 5);
 	pos_y = (entity->position.y - 5);
 	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
-	if (entity->index_anim == 0)
+	if (entity->index_anim < 2)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->one.original, pos_x, pos_y);
 		entity->index_anim++;
 	}
-	else if (entity->index_anim == 1)
+	else if (entity->index_anim < 4)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->two.original, pos_x, pos_y);
 		entity->index_anim++;
 	}
-	else if (entity->index_anim == 2)
+	else if (entity->index_anim < 6)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->three.original, pos_x, pos_y);
 		entity->index_anim = 0;
 	}
 }
 
-void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
+void	*anim_player(t_window window, t_entity *entity)
 {
 	int	pos_x;
 	int	pos_y;
@@ -81,14 +81,6 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 	pos_x = (entity->position.x - 5);
 	pos_y = (entity->position.y - 5);
 
-	if (entity->direction.x > 0)
-		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
-	if (entity->direction.x < 0)
-		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x + 28), (entity->position.y - 5));
-	if (entity->direction.y > 0)
-		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 5), (entity->position.y - 29));
-	if (entity->direction.y < 0)
-		mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 5), (entity->position.y + 28));
 	if (entity->index_anim == 0)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.player->one, pos_x, pos_y);
@@ -126,7 +118,7 @@ void	*anim_player(t_window window, t_entity *entity, void *black_sprite)
 	}
 }
 
-void	*move_entity(t_map map, t_entity *entity)
+void	*move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite)
 {
 	float	x_pos = entity->position.x / 24;
 	float	y_pos = entity->position.y / 24;
@@ -138,6 +130,7 @@ void	*move_entity(t_map map, t_entity *entity)
 			entity->position.x += 0;
 		else
 			entity->position.x += entity->speed;
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite.original, (entity->position.x - 10), (entity->position.y - 5));
 
 	}
 	if (entity->direction.x < 0)
@@ -146,6 +139,7 @@ void	*move_entity(t_map map, t_entity *entity)
 			entity->position.x -= 0;
 		else
 			entity->position.x -= entity->speed;
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite.original, (entity->position.x + 28), (entity->position.y - 5));
 	}
 	if (entity->direction.y > 0)
 	{
@@ -153,6 +147,7 @@ void	*move_entity(t_map map, t_entity *entity)
 			entity->position.y += 0;
 		else
 			entity->position.y += entity->speed;
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite.white, (entity->position.x - 5), (entity->position.y - 10));
 	}
 	if (entity->direction.y < 0)
 	{
@@ -160,6 +155,7 @@ void	*move_entity(t_map map, t_entity *entity)
 			entity->position.y -= 0;
 		else
 			entity->position.y -= entity->speed;
+		mlx_put_image_to_window(window.mlx, window.win, black_sprite.white, (entity->position.x - 5), (entity->position.y + 28));
 	}
 }
 
