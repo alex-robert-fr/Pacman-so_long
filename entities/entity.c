@@ -20,12 +20,14 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	}
 	else if (elements == BLINKY)
 	{
+		entity->speed = 2;
 		entity->u_sprites.gost->one.original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_0.xpm", &size, &size);
 		entity->u_sprites.gost->two.original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_1.xpm", &size, &size);
 		entity->u_sprites.gost->three.original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_2.xpm", &size, &size);
 	}
 	else if (elements == INKY)
 	{
+		entity->speed = 2;
 		entity->u_sprites.gost->one.original = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_0.xpm", &size, &size);
 		entity->u_sprites.gost->two.original = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_1.xpm", &size, &size);
 		entity->u_sprites.gost->three.original = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_2.xpm", &size, &size);
@@ -39,6 +41,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	}
 	else if (elements == CLYDE)
 	{
+		entity->speed = 2;
 		entity->u_sprites.gost->one.original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_0.xpm", &size, &size);
 		entity->u_sprites.gost->two.original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_1.xpm", &size, &size);
 		entity->u_sprites.gost->three.original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_2.xpm", &size, &size);
@@ -46,15 +49,13 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	return ((void*)1);
 }
 
-void	*anim_gost(t_window window, t_entity *entity, void *black_sprite)
+void	*anim_gost(t_window window, t_entity *entity)
 {
 	int	pos_x;
 	int	pos_y;
-	int	rand_dir;
 
 	pos_x = (entity->position.x - 5);
 	pos_y = (entity->position.y - 5);
-	mlx_put_image_to_window(window.mlx, window.win, black_sprite, (entity->position.x - 29), (entity->position.y - 5));
 	if (entity->index_anim < 2)
 	{
 		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->one.original, pos_x, pos_y);
@@ -170,6 +171,9 @@ void	*check_direction(t_map map, t_entity *entity)
 			entity->direction.x = 0;
 			entity->direction.y = 1;
 		}
+		if (map.map[(int)y_pos + 1][(int)x_pos] == '1' && x_pos == ceilf(x_pos))
+			return (NULL);
+		
 	}
 	if (entity->next_direction.y < 0)
 	{
@@ -178,6 +182,8 @@ void	*check_direction(t_map map, t_entity *entity)
 			entity->direction.x = 0;
 			entity->direction.y = -1;
 		}
+		if (map.map[(int)y_pos - 1][(int)x_pos] == '1' && x_pos == ceilf(x_pos))
+			return (NULL);
 	}
 	if (entity->next_direction.x > 0)
 	{
@@ -186,6 +192,8 @@ void	*check_direction(t_map map, t_entity *entity)
 			entity->direction.x = 1;
 			entity->direction.y = 0;
 		}
+		if (map.map[(int)y_pos][(int)x_pos + 1] == '1' && y_pos == ceilf(y_pos))
+			return (NULL);
 	}
 	if (entity->next_direction.x < 0)
 	{
@@ -194,5 +202,7 @@ void	*check_direction(t_map map, t_entity *entity)
 			entity->direction.x = -1;
 			entity->direction.y = 0;
 		}
+		if (map.map[(int)y_pos][(int)x_pos - 1] == '1' && y_pos == ceilf(y_pos))
+			return (NULL);
 	}
 }

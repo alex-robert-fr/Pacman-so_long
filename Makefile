@@ -10,7 +10,8 @@ ENGINE_SRC	=	./engine/vector.c \
 				./engine/keyboard.c
 WIN_SRC		=	./window/window.c \
 				./window/ui.c
-ENTITY_SRC	=	./entities/entity.c
+ENTITY_SRC	=	./entities/entity.c \
+				./entities/ia.c
 LIBFT_PATH	=	$(LIB_PATH)libft
 LIBFT_NAME	=	libft.a
 MLX_PATH	=	$(LIB_PATH)minilibx-linux
