@@ -110,10 +110,11 @@ typedef struct s_gost_anim
 
 typedef struct s_player_anim
 {
-	void	*one;
-	void	*two;
-	void	*three;
-	void	*four;
+	void	*original;
+	void	*right[3];
+	void	*left[3];
+	void	*top[3];
+	void	*bottom[3];
 }	t_player_anim;
 
 
@@ -179,6 +180,8 @@ void		loop_time(t_game *game);
 int			render_next_frame(t_game *game);
 void    	*display_ui(t_game *game);
 void		*move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite);
+void		*anim_move_player(t_window window, t_entity *entity, int *img_time);
+void		*anim_move_gost(t_window window, t_entity *entity, int *img_time);
 void		*choise_direction_ia(t_map map, t_entity *entity);
 int			keyboard(int keycode, t_entity *player);
 void		*check_direction(t_map map, t_entity *entity);
