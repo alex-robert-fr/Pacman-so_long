@@ -3,7 +3,8 @@ CC		=	gcc
 LIB_PATH	=	lib/
 SRC		=	main.c
 MAP_SRC		=	./map/check_map.c \
-				./map/generate_map.c
+				./map/generate_map.c \
+				./map/pac_gomme.c	
 ENGINE_SRC	=	./engine/vector.c \
 				./engine/images.c \
 				./engine/time.c   \
@@ -11,7 +12,8 @@ ENGINE_SRC	=	./engine/vector.c \
 WIN_SRC		=	./window/window.c \
 				./window/ui.c
 ENTITY_SRC	=	./entities/entity.c \
-				./entities/ia.c
+				./entities/ia.c \
+				./entities/player.c
 LIBFT_PATH	=	$(LIB_PATH)libft
 LIBFT_NAME	=	libft.a
 MLX_PATH	=	$(LIB_PATH)minilibx-linux

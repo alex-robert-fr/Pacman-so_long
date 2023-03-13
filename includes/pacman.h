@@ -86,6 +86,7 @@ typedef struct s_sprites
 	t_sprite_map	sp11_2;
 	t_sprite_map	sp12_3;
 	t_sprite_map	sp13_0;
+	t_sprite_map	sp13_2;
 	t_sprite_map	sp13_3;
 	t_sprite_map	sp14_0;
 	t_sprite_map	spxxx;
@@ -130,6 +131,7 @@ typedef struct s_entity
 	int			speed;
 	t_vector	direction;
 	t_vector	next_direction;
+	int			score;
 	union
 	{
 		void			*sprite;
@@ -166,6 +168,8 @@ char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
 void		*generate_map(t_map *map, t_window window);
 void		put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y);
+void		*manage_pacgomme(t_window window, t_map *map);
+void		*get_point(t_map *map, t_entity *player);
 void		*mlx_init();
 void		*anim_player(t_window window, t_entity *entity);
 void		*mlx_new_window(void *mlx, int x, int y, char *title);

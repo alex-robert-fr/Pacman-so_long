@@ -5,6 +5,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	int	size;
 
 	size = 33;
+	entity->score = 0;
 	entity->position.x *= 24;
 	entity->position.y *= 24;
 	entity->direction = v_init(1, 0);
@@ -166,7 +167,7 @@ void	*check_direction(t_map map, t_entity *entity)
 	float	y_pos = entity->position.y / 24;
 	if (entity->next_direction.y > 0)
 	{
-		if (map.map[(int)y_pos + 1][(int)x_pos] == '0' && x_pos == ceilf(x_pos))
+		if ((map.map[(int)y_pos + 1][(int)x_pos] == '0' || map.map[(int)y_pos + 1][(int)x_pos] == 'x') && x_pos == ceilf(x_pos))
 		{
 			entity->direction.x = 0;
 			entity->direction.y = 1;
@@ -177,7 +178,7 @@ void	*check_direction(t_map map, t_entity *entity)
 	}
 	if (entity->next_direction.y < 0)
 	{
-		if (map.map[(int)y_pos - 1][(int)x_pos] == '0' && x_pos == ceilf(x_pos))
+		if ((map.map[(int)y_pos - 1][(int)x_pos] == '0' || map.map[(int)y_pos - 1][(int)x_pos] == 'x') && x_pos == ceilf(x_pos))
 		{
 			entity->direction.x = 0;
 			entity->direction.y = -1;
@@ -187,7 +188,7 @@ void	*check_direction(t_map map, t_entity *entity)
 	}
 	if (entity->next_direction.x > 0)
 	{
-		if (map.map[(int)y_pos][(int)x_pos + 1] == '0' && y_pos == ceilf(y_pos))
+		if ((map.map[(int)y_pos][(int)x_pos + 1] == '0' || map.map[(int)y_pos][(int)x_pos + 1] == 'x') && y_pos == ceilf(y_pos))
 		{
 			entity->direction.x = 1;
 			entity->direction.y = 0;
@@ -197,7 +198,7 @@ void	*check_direction(t_map map, t_entity *entity)
 	}
 	if (entity->next_direction.x < 0)
 	{
-		if (map.map[(int)y_pos][(int)x_pos - 1] == '0' && y_pos == ceilf(y_pos))
+		if ((map.map[(int)y_pos][(int)x_pos - 1] == '0' || map.map[(int)y_pos][(int)x_pos - 1] == 'x') && y_pos == ceilf(y_pos))
 		{
 			entity->direction.x = -1;
 			entity->direction.y = 0;
