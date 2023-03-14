@@ -1,6 +1,6 @@
 #include "../includes/pacman.h"
 
-void *manage_pacgomme(t_window window, t_map *map)
+void *manage_pacgomme(t_game *game)
 {
 	int	x;
 	int y;
@@ -8,14 +8,14 @@ void *manage_pacgomme(t_window window, t_map *map)
 
 	y = 0;
 	is_win = 1;
-	while (y < map->size.y)
+	while (y < game->map->size.y)
 	{
 		x = 0;
-		while (map->map[y][x])
+		while (game->map->map[y][x])
 		{
-			if (map->map[y][x] == '0')
+			if (game->map->map[y][x] == '0' && (game->map->map[y][x - 1] == '1' || game->map->map[y - 1][x] == '1' || game->map->map[y][x + 1] == '1' || game->map->map[y + 1][x] == '1'))
 			{
-				put_map_sprite_to_window(window, map->sprites->sp13_2.original, x, y);
+				put_map_sprite_to_window(*game->window, game->map->sprites->sp13_2.original, x, y);
 				is_win = 0;
 			}
 			x++;
@@ -23,5 +23,5 @@ void *manage_pacgomme(t_window window, t_map *map)
 		y++;		
 	}
 	if (is_win)
-		exit(0);
+		ft_close(game);
 }

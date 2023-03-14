@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/10 15:20:42 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:10:10 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 	map = ft_calloc(info_map.size.y + 1, sizeof(char*));
 	if (!map)
 		return (0);
-	printf("%i ----------------------------\n", info_map.size.y);
+	printf("%f ----------------------------\n", info_map.size.y);
 	line = 0;
 	str = gnl_trim(fd, "\n");
 	while (str)

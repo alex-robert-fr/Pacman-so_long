@@ -170,7 +170,7 @@ char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
 void		*generate_map(t_map *map, t_window window);
 void		put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y);
-void		*manage_pacgomme(t_window window, t_map *map);
+void		*manage_pacgomme(t_game *game);
 void		*get_point(t_map *map, t_entity *player);
 void		*mlx_init();
 void		*anim_player(t_window window, t_entity *entity);

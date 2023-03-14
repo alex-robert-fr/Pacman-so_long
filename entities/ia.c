@@ -3,8 +3,8 @@
 void *choise_direction_ia(t_map map, t_entity *entity)
 {
 	// printf("PACMAN\n");
-	int num;
-	void *check;
+	int		num;
+	void	*check;
 
 	check = 0;
 	while (!check)
@@ -35,9 +35,9 @@ void *choise_direction_ia(t_map map, t_entity *entity)
 			entity->next_direction.y = 1;
 		}
 		if (!check_direction(map, entity))
-			check = 0;
+			check = (void*)0;
 		else
-			check = 1;
+			check = (void*)1;
 	}
 
 }
