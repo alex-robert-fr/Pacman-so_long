@@ -23,6 +23,8 @@ void	loop_time(t_game *game)
 			// printf("Player: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
 			// printf("Pinky: [%f, %f]\n", game->entities->pinky->position.x / 24, game->entities->pinky->position.y / 24);
 			manage_pacgomme(game);
+			if (!check_life_player(game->entities))
+				ft_close(game);
 			get_point(game->map, game->entities->player);
 			move_entity(*game->window, *game->map, game->entities->pinky, game->map->sprites->black);
 			move_entity(*game->window, *game->map, game->entities->blinky, game->map->sprites->black);

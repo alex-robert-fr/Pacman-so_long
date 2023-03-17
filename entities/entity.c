@@ -3,6 +3,8 @@
 void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 {
 	int	size;
+	int	pos_x;
+	int	pos_y;
 
 	size = 33;
 	entity->score = 0;
@@ -10,6 +12,8 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	entity->position.y *= 24;
 	entity->direction = v_init(1, 0);
 	entity->next_direction = v_init(0, 0);
+	pos_x = (entity->position.x - 5);
+	pos_y = (entity->position.y - 5);
 	if (elements == PLAYER)
 	{
 		entity->speed = 4;
@@ -26,6 +30,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 		entity->u_sprites.player->bottom[0] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_b_1.xpm", &size, &size);
 		entity->u_sprites.player->bottom[1] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_b_2.xpm", &size, &size);
 		entity->u_sprites.player->bottom[2] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_b_3.xpm", &size, &size);
+		mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.player->right[1], pos_x, pos_y);
 	}
 	else if (elements == BLINKY)
 	{
