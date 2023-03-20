@@ -72,22 +72,27 @@ t_game	*init_game()
 	game->entities = ft_calloc(sizeof(t_entities), 1);
 
 	game->entities->player = ft_calloc(sizeof(t_entity), 1);
+	game->entities->player->life = 1;
 	game->entities->player->index_anim = 0;
 	game->entities->player->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
 
 	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->blinky->life = 0;
 	game->entities->blinky->index_anim = 0;
 	game->entities->blinky->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 
 	game->entities->inky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->inky->life = 1;
 	game->entities->inky->index_anim = 0;
 	game->entities->inky->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 
 	game->entities->pinky = ft_calloc(sizeof(t_entity), 1);
+	game->entities->pinky->life = 1;
 	game->entities->pinky->index_anim = 0;
 	game->entities->pinky->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 
 	game->entities->clyde = ft_calloc(sizeof(t_entity), 1);
+	game->entities->clyde->life = 1;
 	game->entities->clyde->index_anim = 0;
 	game->entities->clyde->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 	return (game);

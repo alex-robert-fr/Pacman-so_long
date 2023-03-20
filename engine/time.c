@@ -3,22 +3,21 @@
 
 void	loop_time(t_game *game)
 {
+	int gost_collision;
+
 	game->time->current_time = clock();
 	game->time->elapsed_time = game->time->current_time - game->time->previous_time;
 	game->time->previous_time = game->time->current_time;
 	game->time->lag += game->time->elapsed_time;
 	while (game->time->lag >= (1000000 / FRAME_RATE))
 	{
+		gost_collision = check_life_player(game->entities);
 		if (game->time->loop_anim % (FRAME_RATE / (FRAME_RATE / 60)) == 0)
 		{
-			if (game->super_gomme < 13 && game->super_gomme != 0)
+			if (game->super_gomme < 10 && game->super_gomme != 0)
 			{
 				printf("Time: %i\n", game->super_gomme);
-				if (game->super_gomme < 4)
-					game->entities->player->speed = 0;
-				else
-					game->entities->player->speed = 4;
-				if (game->super_gomme == 12)
+				if (game->super_gomme == 9)
 					game->super_gomme = 0;
 				else
 					game->super_gomme++;
@@ -38,7 +37,7 @@ void	loop_time(t_game *game)
 			// printf("Player: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
 			// printf("Pinky: [%f, %f]\n", game->entities->pinky->position.x / 24, game->entities->pinky->position.y / 24);
 			manage_pacgomme(game);
-			if (!check_life_player(game->entities) && !game->super_gomme)
+			if (!gost_collision && !game->super_gomme)
 				ft_close(game);
 			get_point(game, game->map, game->entities->player);
 			move_entity(*game->window, *game->map, game->entities->pinky, game->map->sprites->black);
@@ -57,4 +56,5 @@ void	loop_time(t_game *game)
 			game->time->loop_anim = 0;
 		game->time->lag -= (1000000 / FRAME_RATE);
 	}
+	game->entities->player->speed = 4;
 }

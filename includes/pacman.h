@@ -105,10 +105,10 @@ typedef struct s_sprite_gost
 
 typedef struct s_gost_anim
 {
-	t_sprite_gost	right[3];
-	t_sprite_gost	left[3];
-	t_sprite_gost	top[3];
-	t_sprite_gost	bottom[3];
+	t_sprite_gost	right[4];
+	t_sprite_gost	left[4];
+	t_sprite_gost	top[4];
+	t_sprite_gost	bottom[4];
 }	t_gost_anim;
 
 typedef struct s_player_anim
@@ -136,6 +136,7 @@ typedef struct s_entity
 	t_vector	direction;
 	t_vector	next_direction;
 	int			score;
+	int			life;
 	union
 	{
 		void			*sprite;
