@@ -159,7 +159,6 @@ typedef struct s_game {
 	t_entities	*entities;
 	t_time		*time;
 	int			super_gomme;
-	
 }	t_game;
 
 t_game		*init_game();

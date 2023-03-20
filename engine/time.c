@@ -11,10 +11,14 @@ void	loop_time(t_game *game)
 	{
 		if (game->time->loop_anim % (FRAME_RATE / (FRAME_RATE / 60)) == 0)
 		{
-			if (game->super_gomme < 10 && game->super_gomme != 0)
+			if (game->super_gomme < 13 && game->super_gomme != 0)
 			{
 				printf("Time: %i\n", game->super_gomme);
-				if (game->super_gomme == 9)
+				if (game->super_gomme < 4)
+					game->entities->player->speed = 0;
+				else
+					game->entities->player->speed = 4;
+				if (game->super_gomme == 12)
 					game->super_gomme = 0;
 				else
 					game->super_gomme++;
@@ -53,5 +57,4 @@ void	loop_time(t_game *game)
 			game->time->loop_anim = 0;
 		game->time->lag -= (1000000 / FRAME_RATE);
 	}
-	game->entities->player->speed = 4;
 }

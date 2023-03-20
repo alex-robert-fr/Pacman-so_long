@@ -16,7 +16,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	pos_y = (entity->position.y - 5);
 	if (elements == PLAYER)
 	{
-		entity->speed = 0;
+		entity->speed = 4;
 		entity->u_sprites.player->original = mlx_xpm_file_to_image(window.mlx, "assets/pacman_0.xpm", &size, &size);
 		entity->u_sprites.player->right[0] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_1.xpm", &size, &size);
 		entity->u_sprites.player->right[1] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_2.xpm", &size, &size);
