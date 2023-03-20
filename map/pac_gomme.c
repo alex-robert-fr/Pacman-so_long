@@ -18,6 +18,10 @@ void *manage_pacgomme(t_game *game)
 				put_map_sprite_to_window(*game->window, game->map->sprites->sp13_2.original, x, y);
 				is_win = 0;
 			}
+			else if (game->map->map[y][x] == SUPER)
+			{
+				put_map_sprite_to_window(*game->window, game->map->sprites->sp15_2.original, x, y);
+			}
 			x++;
 		}
 		y++;		

@@ -48,6 +48,7 @@ typedef enum e_elements
 	INKY = 'I',
 	PINKY = 'p',
 	CLYDE = 'C',
+	SUPER = 'S'
 }	t_elements;
 
 typedef struct s_sprite_map
@@ -89,6 +90,7 @@ typedef struct s_sprites
 	t_sprite_map	sp13_2;
 	t_sprite_map	sp13_3;
 	t_sprite_map	sp14_0;
+	t_sprite_map	sp15_2;
 	t_sprite_map	spxxx;
 	t_sprite_map	black;
 }	t_sprites;

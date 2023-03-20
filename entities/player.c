@@ -12,6 +12,11 @@ void	*get_point(t_map *map, t_entity *player)
 		map->map[y_pos][x_pos] = 'x';
 		player->score += 10;
 	}
+	if (map->map[y_pos][x_pos] == SUPER)
+	{
+		map->map[y_pos][x_pos] = 'x';
+		player->score += 50;
+	}
 }
 void	*check_life_player(t_entities *entities)
 {

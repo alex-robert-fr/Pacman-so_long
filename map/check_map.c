@@ -6,7 +6,7 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:59:05 by alrobert          #+#    #+#             */
-/*   Updated: 2023/03/14 17:10:10 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:07:24 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_wall(char *str, int len, t_walls wall)
 		{
 			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
-			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE) //! REFACTOR
+			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE && str[i] != SUPER) //! REFACTOR
 					return (1);
 			i++;
 		}
