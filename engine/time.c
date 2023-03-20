@@ -18,7 +18,13 @@ void	loop_time(t_game *game)
 			{
 				printf("Time: %i\n", game->super_gomme);
 				if (game->super_gomme == 9)
+				{
 					game->super_gomme = 0;
+					game->entities->blinky->life = 1;
+					game->entities->inky->life = 1;
+					game->entities->pinky->life = 1;
+					game->entities->clyde->life = 1;
+				}
 				else
 					game->super_gomme++;
 			}
@@ -37,7 +43,18 @@ void	loop_time(t_game *game)
 			// printf("Player: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
 			// printf("Pinky: [%f, %f]\n", game->entities->pinky->position.x / 24, game->entities->pinky->position.y / 24);
 			manage_pacgomme(game);
-			if (!gost_collision && !game->super_gomme)
+			if (game->super_gomme)
+			{
+				if (gost_collision == 1)
+					game->entities->blinky->life = 0;
+				if (gost_collision == 2)
+					game->entities->inky->life = 0;
+				if (gost_collision == 3)
+					game->entities->pinky->life = 0;
+				if (gost_collision == 4)
+					game->entities->clyde->life = 0;
+			}
+			else if (gost_collision && !game->super_gomme)
 				ft_close(game);
 			get_point(game, game->map, game->entities->player);
 			move_entity(*game->window, *game->map, game->entities->pinky, game->map->sprites->black);

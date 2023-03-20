@@ -19,16 +19,16 @@ void	*get_point(t_game *game, t_map *map, t_entity *player)
 		game->super_gomme = 1;
 	}
 }
-void	*check_life_player(t_entities *entities)
+int	check_life_player(t_entities *entities)
 {
 	// printf("player: %f, gost: %f\n", ceilf(entities->player->position.x / 24), entities->blinky->position.x / 24);
 	if ((ceilf(entities->player->position.x / 24) == (entities->blinky->position.x / 24) || ceilf(entities->player->position.x / 24) == (entities->blinky->position.x / 24) + 1) && (ceilf(entities->player->position.y / 24) == (entities->blinky->position.y / 24) || ceilf(entities->player->position.y / 24) == (entities->blinky->position.y / 24) + 1))
-		return(NULL);
+		return(1);
 	if ((ceilf(entities->player->position.x / 24) == (entities->inky->position.x / 24) || ceilf(entities->player->position.x / 24) == (entities->inky->position.x / 24) + 1) && (ceilf(entities->player->position.y / 24) == (entities->inky->position.y / 24) || ceilf(entities->player->position.y / 24) == (entities->inky->position.y / 24) + 1))
-		return(NULL);
+		return(2);
 	if ((ceilf(entities->player->position.x / 24) == (entities->pinky->position.x / 24) || ceilf(entities->player->position.x / 24) == (entities->pinky->position.x / 24) + 1) && (ceilf(entities->player->position.y / 24) == (entities->pinky->position.y / 24) || ceilf(entities->player->position.y / 24) == (entities->pinky->position.y / 24) + 1))
-		return(NULL);
+		return(3);
 	if ((ceilf(entities->player->position.x / 24) == (entities->clyde->position.x / 24) || ceilf(entities->player->position.x / 24) == (entities->clyde->position.x / 24) + 1) && (ceilf(entities->player->position.y / 24) == (entities->clyde->position.y / 24) || ceilf(entities->player->position.y / 24) == (entities->clyde->position.y / 24) + 1))
-		return(NULL);
-	return ((void*)1);
+		return(4);
+	return (0);
 }

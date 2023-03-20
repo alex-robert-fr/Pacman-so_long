@@ -77,7 +77,7 @@ t_game	*init_game()
 	game->entities->player->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
 
 	game->entities->blinky = ft_calloc(sizeof(t_entity), 1);
-	game->entities->blinky->life = 0;
+	game->entities->blinky->life = 1;
 	game->entities->blinky->index_anim = 0;
 	game->entities->blinky->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 
