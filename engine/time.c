@@ -50,14 +50,35 @@ void	loop_time(t_game *game)
 			manage_pacgomme(game);
 			if (game->super_gomme)
 			{
+				game->entities->player->speed = 4;
+				if (game->entities->blinky->life == 1)
+					game->entities->blinky->speed = 2;
+				if (game->entities->inky->life == 1)
+					game->entities->inky->speed = 2;
+				if (game->entities->pinky->life == 1)
+					game->entities->pinky->speed = 2;
+				if (game->entities->clyde->life == 1)
+					game->entities->clyde->speed = 2;
 				if (gost_collision == 1)
+				{
 					game->entities->blinky->life = 0;
+					game->entities->blinky->speed = 6;
+				}
 				if (gost_collision == 2)
+				{
 					game->entities->inky->life = 0;
+					game->entities->inky->speed = 6;
+				}
 				if (gost_collision == 3)
+				{
 					game->entities->pinky->life = 0;
+					game->entities->pinky->speed = 6;
+				}
 				if (gost_collision == 4)
+				{
 					game->entities->clyde->life = 0;
+					game->entities->clyde->speed = 6;
+				}
 
 				if (gost_collision)
 				{
@@ -103,6 +124,13 @@ void	loop_time(t_game *game)
 			}
 			else if (gost_collision && !game->super_gomme)
 				ft_close(game);
+			else if ( !game->super_gomme)
+			{
+				game->entities->blinky->speed = 4;
+				game->entities->inky->speed = 4;
+				game->entities->pinky->speed = 4;
+				game->entities->clyde->speed = 4;
+			}
 			get_point(game, game->map, game->entities->player);
 			move_entity(*game->window, *game->map, game->entities->pinky, game->map->sprites->black);
 			move_entity(*game->window, *game->map, game->entities->blinky, game->map->sprites->black);
