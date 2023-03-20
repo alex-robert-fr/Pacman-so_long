@@ -65,6 +65,7 @@ t_game	*init_game()
 
 	game = ft_calloc(sizeof(t_game), 1);
 	game->super_gomme = 0;
+	game->combo = 0;
 	game->time = ft_calloc(sizeof(t_time), 1);
 	game->time->previous_time = clock();
 	game->time->lag = 0;

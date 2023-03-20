@@ -4,7 +4,12 @@
 void	loop_time(t_game *game)
 {
 	int gost_collision;
+	int	count_combo;
+	int lifes;
 
+	count_combo = 0;
+	game->combo = 0;
+	lifes = game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life;
 	game->time->current_time = clock();
 	game->time->elapsed_time = game->time->current_time - game->time->previous_time;
 	game->time->previous_time = game->time->current_time;
@@ -53,6 +58,48 @@ void	loop_time(t_game *game)
 					game->entities->pinky->life = 0;
 				if (gost_collision == 4)
 					game->entities->clyde->life = 0;
+
+				if (gost_collision)
+				{
+					while (count_combo < 4)
+					{
+						if (count_combo == 0 && (game->entities))
+							if (game->entities->blinky->life == 0)
+								game->combo++;
+						if (count_combo == 1)
+							if (game->entities->inky->life == 0)
+								game->combo++;
+						if (count_combo == 2)
+							if (game->entities->pinky->life == 0)
+								game->combo++;
+						if (count_combo == 3)
+							if (game->entities->clyde->life == 0)
+								game->combo++;
+						count_combo++;
+					}
+					
+					// printf("Combo: %i ====>> %i | GOST COLLISION %i | %i\n", game->combo, game->entities->player->score, game->gost_collision, gost_collision);
+					if (game->combo == 1 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
+					{
+						game->entities->player->score += 200;
+						printf("+200 -----> %i\n", game->entities->player->score);
+					}
+					if (game->combo == 2 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
+					{
+						game->entities->player->score += 400;
+						printf("+400 -----> %i\n", game->entities->player->score);
+					}
+					if (game->combo == 3 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
+					{
+						game->entities->player->score += 800;
+						printf("+800 -----> %i\n", game->entities->player->score);
+					}
+					if (game->combo == 4 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
+					{
+						game->entities->player->score += 1600;
+						printf("+1600 -----> %i\n", game->entities->player->score);
+					}
+				}
 			}
 			else if (gost_collision && !game->super_gomme)
 				ft_close(game);
