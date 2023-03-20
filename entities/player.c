@@ -1,6 +1,6 @@
 #include "../includes/pacman.h"
 
-void	*get_point(t_map *map, t_entity *player)
+void	*get_point(t_game *game, t_map *map, t_entity *player)
 {
 	int	x_pos;
 	int	y_pos;
@@ -16,6 +16,7 @@ void	*get_point(t_map *map, t_entity *player)
 	{
 		map->map[y_pos][x_pos] = 'x';
 		player->score += 50;
+		game->super_gomme = 1;
 	}
 }
 void	*check_life_player(t_entities *entities)

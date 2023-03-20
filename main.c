@@ -45,6 +45,7 @@ int	start(char *map_file)
 		return (1);
 	if (!set_spawn_entity(*game->window, game->entities->clyde, CLYDE))
 		return (1);
+	// sleep(2);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
 	mlx_loop_hook(game->window->mlx, render_next_frame, game);
 	mlx_key_hook(game->window->win, keyboard, game->entities->player);
@@ -63,6 +64,7 @@ t_game	*init_game()
 	t_game	*game;
 
 	game = ft_calloc(sizeof(t_game), 1);
+	game->super_gomme = 0;
 	game->time = ft_calloc(sizeof(t_time), 1);
 	game->time->previous_time = clock();
 	game->time->lag = 0;

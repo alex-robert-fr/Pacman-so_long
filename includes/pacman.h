@@ -105,10 +105,10 @@ typedef struct s_sprite_gost
 
 typedef struct s_gost_anim
 {
-	void	*right[3];
-	void	*left[3];
-	void	*top[3];
-	void	*bottom[3];
+	t_sprite_gost	right[3];
+	t_sprite_gost	left[3];
+	t_sprite_gost	top[3];
+	t_sprite_gost	bottom[3];
 }	t_gost_anim;
 
 typedef struct s_player_anim
@@ -158,6 +158,8 @@ typedef struct s_game {
 	t_map		*map;
 	t_entities	*entities;
 	t_time		*time;
+	int			super_gomme;
+	
 }	t_game;
 
 t_game		*init_game();
@@ -166,7 +168,7 @@ int			mlx_loop(void *mlx);
 int			ft_close(t_game *game);
 int			check_path(char *path);
 int			check_wall(char *str, int len, t_walls wall);
-void		*anim_gost(t_window window, t_entity *entity);
+void		*anim_gost(t_window window, t_entity *entity, int super_gomme);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
@@ -174,7 +176,7 @@ void		*generate_map(t_map *map, t_window window);
 void		put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y);
 void		*manage_pacgomme(t_game *game);
 void		*check_life_player(t_entities *entities);
-void		*get_point(t_map *map, t_entity *player);
+void		*get_point(t_game *game, t_map *map, t_entity *player);
 void		*mlx_init();
 void		*anim_player(t_window window, t_entity *entity);
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
@@ -185,7 +187,7 @@ int			render_next_frame(t_game *game);
 void    	*display_ui(t_game *game);
 void		*move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite);
 void		*anim_move_player(t_window window, t_entity *entity, int *img_time);
-void		*anim_move_gost(t_window window, t_entity *entity, int *img_time);
+void		*anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_gomme);
 void		*choise_direction_ia(t_map map, t_entity *entity);
 int			keyboard(int keycode, t_entity *player);
 void		*check_direction(t_map map, t_entity *entity);

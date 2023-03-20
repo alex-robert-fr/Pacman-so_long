@@ -16,7 +16,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	pos_y = (entity->position.y - 5);
 	if (elements == PLAYER)
 	{
-		entity->speed = 4;
+		entity->speed = 0;
 		entity->u_sprites.player->original = mlx_xpm_file_to_image(window.mlx, "assets/pacman_0.xpm", &size, &size);
 		entity->u_sprites.player->right[0] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_1.xpm", &size, &size);
 		entity->u_sprites.player->right[1] = mlx_xpm_file_to_image(window.mlx, "assets/pacman_r_2.xpm", &size, &size);
@@ -35,90 +35,138 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements elements)
 	else if (elements == BLINKY)
 	{
 		entity->speed = 4;
-		entity->u_sprites.gost->right[0] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_0.xpm", &size, &size);
-		entity->u_sprites.gost->right[1] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_1.xpm", &size, &size);
-		entity->u_sprites.gost->right[2] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->left[0] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_l_0.xpm", &size, &size);
-		entity->u_sprites.gost->left[1] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_l_1.xpm", &size, &size);
-		entity->u_sprites.gost->left[2] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->top[0] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_t_0.xpm", &size, &size);
-		entity->u_sprites.gost->top[1] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_t_1.xpm", &size, &size);
-		entity->u_sprites.gost->top[2] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->bottom[0] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_b_0.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[1] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_b_1.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[2] = mlx_xpm_file_to_image(window.mlx, "assets/blinky_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].original = mlx_xpm_file_to_image(window.mlx, "assets/blinky_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_2.xpm", &size, &size);
 	}
 	else if (elements == INKY)
 	{
 		entity->speed = 4;
-		entity->u_sprites.gost->right[0] = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_0.xpm", &size, &size);
-		entity->u_sprites.gost->right[1] = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_1.xpm", &size, &size);
-		entity->u_sprites.gost->right[2] = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->left[0] = mlx_xpm_file_to_image(window.mlx, "assets/inky_l_0.xpm", &size, &size);
-		entity->u_sprites.gost->left[1] = mlx_xpm_file_to_image(window.mlx, "assets/inky_l_1.xpm", &size, &size);
-		entity->u_sprites.gost->left[2] = mlx_xpm_file_to_image(window.mlx, "assets/inky_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->top[0] = mlx_xpm_file_to_image(window.mlx, "assets/inky_t_0.xpm", &size, &size);
-		entity->u_sprites.gost->top[1] = mlx_xpm_file_to_image(window.mlx, "assets/inky_t_1.xpm", &size, &size);
-		entity->u_sprites.gost->top[2] = mlx_xpm_file_to_image(window.mlx, "assets/inky_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->bottom[0] = mlx_xpm_file_to_image(window.mlx, "assets/inky_b_0.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[1] = mlx_xpm_file_to_image(window.mlx, "assets/inky_b_1.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[2] = mlx_xpm_file_to_image(window.mlx, "assets/inky_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].original = mlx_xpm_file_to_image(window.mlx, "assets/inky_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_2.xpm", &size, &size);
 	}
 	else if (elements == PINKY)
 	{
 		entity->speed = 4;
-		entity->u_sprites.gost->right[0] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_0.xpm", &size, &size);
-		entity->u_sprites.gost->right[1] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_1.xpm", &size, &size);
-		entity->u_sprites.gost->right[2] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_2.xpm", &size, &size);
 		
-		entity->u_sprites.gost->left[0] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_l_0.xpm", &size, &size);
-		entity->u_sprites.gost->left[1] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_l_1.xpm", &size, &size);
-		entity->u_sprites.gost->left[2] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->top[0] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_t_0.xpm", &size, &size);
-		entity->u_sprites.gost->top[1] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_t_1.xpm", &size, &size);
-		entity->u_sprites.gost->top[2] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->bottom[0] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_b_0.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[1] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_b_1.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[2] = mlx_xpm_file_to_image(window.mlx, "assets/pinky_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].original = mlx_xpm_file_to_image(window.mlx, "assets/pinky_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_2.xpm", &size, &size);
 		
 	}
 	else if (elements == CLYDE)
 	{
 		entity->speed = 4;
-		entity->u_sprites.gost->right[0] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_0.xpm", &size, &size);
-		entity->u_sprites.gost->right[1] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_1.xpm", &size, &size);
-		entity->u_sprites.gost->right[2] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_r_2.xpm", &size, &size);
+		entity->u_sprites.gost->right[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_0.xpm", &size, &size);
+		entity->u_sprites.gost->right[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_1.xpm", &size, &size);
+		entity->u_sprites.gost->right[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_r_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->left[0] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_l_0.xpm", &size, &size);
-		entity->u_sprites.gost->left[1] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_l_1.xpm", &size, &size);
-		entity->u_sprites.gost->left[2] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_l_2.xpm", &size, &size);
+		entity->u_sprites.gost->left[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_0.xpm", &size, &size);
+		entity->u_sprites.gost->left[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_1.xpm", &size, &size);
+		entity->u_sprites.gost->left[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_l_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->top[0] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_t_0.xpm", &size, &size);
-		entity->u_sprites.gost->top[1] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_t_1.xpm", &size, &size);
-		entity->u_sprites.gost->top[2] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_t_2.xpm", &size, &size);
+		entity->u_sprites.gost->top[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_0.xpm", &size, &size);
+		entity->u_sprites.gost->top[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_1.xpm", &size, &size);
+		entity->u_sprites.gost->top[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_t_2.xpm", &size, &size);
 
-		entity->u_sprites.gost->bottom[0] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_b_0.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[1] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_b_1.xpm", &size, &size);
-		entity->u_sprites.gost->bottom[2] = mlx_xpm_file_to_image(window.mlx, "assets/clyde_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].original = mlx_xpm_file_to_image(window.mlx, "assets/clyde_b_2.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[0].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_0.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[1].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_1.xpm", &size, &size);
+		entity->u_sprites.gost->bottom[2].blue = mlx_xpm_file_to_image(window.mlx, "assets/blue_gost_b_2.xpm", &size, &size);
 	}
 	return ((void*)1);
 }
 
-void	*anim_gost(t_window window, t_entity *entity)
+void	*anim_gost(t_window window, t_entity *entity, int super_gomme)
 {
 	int time_anim[3] = {2, 4, 6};
-	anim_move_gost(window, entity, time_anim);
+	anim_move_gost(window, entity, time_anim, super_gomme);
 }
 
-void	*anim_move_gost(t_window window, t_entity *entity, int *img_time)
+void	*anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_gomme)
 {
 	int	pos_x;
 	int	pos_y;
@@ -128,37 +176,97 @@ void	*anim_move_gost(t_window window, t_entity *entity, int *img_time)
 	if (entity->index_anim < img_time[0])
 	{
 		if (entity->direction.x > 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[0], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[0].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[0].original, pos_x, pos_y);
+		}
 		if (entity->direction.x < 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[0], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[0].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[0].original, pos_x, pos_y);
+		}
 		if (entity->direction.y > 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[0], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[0].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[0].original, pos_x, pos_y);
+		}
 		if (entity->direction.y < 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[0], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[0].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[0].original, pos_x, pos_y);
+		}
 		entity->index_anim++;
 	}
 	else if (entity->index_anim < img_time[1])
 	{
 		if (entity->direction.x > 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[1], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[1].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[1].original, pos_x, pos_y);
+		}
 		if (entity->direction.x < 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[1], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[1].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[1].original, pos_x, pos_y);
+		}
 		if (entity->direction.y > 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[1], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[1].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[1].original, pos_x, pos_y);
+		}
 		if (entity->direction.y < 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[1], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[1].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[1].original, pos_x, pos_y);
+		}
 		entity->index_anim++;
 	}
 	else if (entity->index_anim < img_time[2])
 	{
 		if (entity->direction.x > 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[2], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[2].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[2].original, pos_x, pos_y);
+		}
 		if (entity->direction.x < 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[2], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[2].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[2].original, pos_x, pos_y);
+		}
 		if (entity->direction.y > 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[2], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[2].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[2].original, pos_x, pos_y);
+		}
 		if (entity->direction.y < 0)
-			mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[2], pos_x, pos_y);
+		{
+			if (super_gomme)
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[2].blue, pos_x, pos_y);
+			else
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[2].original, pos_x, pos_y);
+		}
 		entity->index_anim = 0;
 	}
 }
