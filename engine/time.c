@@ -1,23 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 23:26:26 by alrobert          #+#    #+#             */
+/*   Updated: 2023/03/28 00:30:40 by alrobert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/pacman.h"
 #define FRAME_RATE 100
 
 void	loop_time(t_game *game)
 {
-	int gost_collision;
-	int	count_combo;
-	int lifes;
+	t_entities	*entities;
+	t_time		*tm;
+	int			gost_collision;
+	int			count_combo;
+	int			lifes[2];
+	t_entity	*player;
+	t_entity	*blinky;
+	t_entity	*inky;
+	t_entity	*pinky;
+	t_entity	*clyde;
+	t_map		*map;
 
 	count_combo = 0;
 	game->combo = 0;
-	lifes = game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life;
-	game->time->current_time = clock();
-	game->time->elapsed_time = game->time->current_time - game->time->previous_time;
-	game->time->previous_time = game->time->current_time;
-	game->time->lag += game->time->elapsed_time;
-	while (game->time->lag >= (1000000 / FRAME_RATE))
+	map = game->map;
+	tm = game->time;
+	player = game->entities->player;
+	blinky = game->entities->blinky;
+	pinky = game->entities->pinky;
+	inky = game->entities->inky;
+	clyde = game->entities->clyde;
+	lifes[0] = count_lifes_gosts(*game->entities);
+	tm->current_time = clock();
+	tm->elapsed_time = tm->current_time - tm->previous_time;
+	tm->previous_time = tm->current_time;
+	tm->lag += tm->elapsed_time;
+	while (tm->lag >= (1000000 / FRAME_RATE))
 	{
 		gost_collision = check_life_player(game->entities);
-		if (game->time->loop_anim % (FRAME_RATE / (FRAME_RATE / 60)) == 0)
+		if (tm->loop_anim % (FRAME_RATE / (FRAME_RATE / 60)) == 0)
 		{
 			if (game->super_gomme < 10 && game->super_gomme != 0)
 			{
@@ -25,128 +52,114 @@ void	loop_time(t_game *game)
 				if (game->super_gomme == 9)
 				{
 					game->super_gomme = 0;
-					game->entities->blinky->life = 1;
-					game->entities->inky->life = 1;
-					game->entities->pinky->life = 1;
-					game->entities->clyde->life = 1;
+					blinky->life = 1;
+					inky->life = 1;
+					pinky->life = 1;
+					clyde->life = 1;
 				}
 				else
 					game->super_gomme++;
 			}
 		}
-		if (game->time->loop_anim % (FRAME_RATE / (FRAME_RATE / 60)) == 0)
+		if (tm->loop_anim % (FRAME_RATE / (FRAME_RATE / 60)) == 0)
 		{
-			choise_direction_ia(*game->map, game->entities->pinky);
-			choise_direction_ia(*game->map, game->entities->inky);
-			choise_direction_ia(*game->map, game->entities->blinky);
-			choise_direction_ia(*game->map, game->entities->clyde);
+			choise_direction_ia(*map, pinky);
+			choise_direction_ia(*map, inky);
+			choise_direction_ia(*map, blinky);
+			choise_direction_ia(*map, clyde);
 		}
-		if (game->time->loop_anim % (FRAME_RATE / (FRAME_RATE / 2)) == 0)
+		if (tm->loop_anim % (FRAME_RATE / (FRAME_RATE / 2)) == 0)
 		{
 			display_ui(game);
-
-			// printf("Player: [%f, %f]\n", game->entities->player->position.x, game->entities->player->position.y);
-			// printf("Pinky: [%f, %f]\n", game->entities->pinky->position.x / 24, game->entities->pinky->position.y / 24);
 			manage_pacgomme(game);
 			if (game->super_gomme)
 			{
-				game->entities->player->speed = 4;
-				if (game->entities->blinky->life == 1)
-					game->entities->blinky->speed = 2;
-				if (game->entities->inky->life == 1)
-					game->entities->inky->speed = 2;
-				if (game->entities->pinky->life == 1)
-					game->entities->pinky->speed = 2;
-				if (game->entities->clyde->life == 1)
-					game->entities->clyde->speed = 2;
+				player->speed = 4;
+				if (blinky->life == 1)
+					blinky->speed = 2;
+				if (inky->life == 1)
+					inky->speed = 2;
+				if (pinky->life == 1)
+					pinky->speed = 2;
+				if (clyde->life == 1)
+					clyde->speed = 2;
 				if (gost_collision == 1)
-				{
-					game->entities->blinky->life = 0;
-					game->entities->blinky->speed = 6;
-				}
+					gost_is_dead(blinky);
 				if (gost_collision == 2)
-				{
-					game->entities->inky->life = 0;
-					game->entities->inky->speed = 6;
-				}
+					gost_is_dead(inky);
 				if (gost_collision == 3)
-				{
-					game->entities->pinky->life = 0;
-					game->entities->pinky->speed = 6;
-				}
+					gost_is_dead(pinky);
 				if (gost_collision == 4)
-				{
-					game->entities->clyde->life = 0;
-					game->entities->clyde->speed = 6;
-				}
-
+					gost_is_dead(clyde);
 				if (gost_collision)
 				{
 					while (count_combo < 4)
 					{
 						if (count_combo == 0 && (game->entities))
-							if (game->entities->blinky->life == 0)
+							if (blinky->life == 0)
 								game->combo++;
 						if (count_combo == 1)
-							if (game->entities->inky->life == 0)
+							if (inky->life == 0)
 								game->combo++;
 						if (count_combo == 2)
-							if (game->entities->pinky->life == 0)
+							if (pinky->life == 0)
 								game->combo++;
 						if (count_combo == 3)
-							if (game->entities->clyde->life == 0)
+							if (clyde->life == 0)
 								game->combo++;
 						count_combo++;
 					}
-					
-					// printf("Combo: %i ====>> %i | GOST COLLISION %i | %i\n", game->combo, game->entities->player->score, game->gost_collision, gost_collision);
-					if (game->combo == 1 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
-					{
-						game->entities->player->score += 200;
-						printf("+200 -----> %i\n", game->entities->player->score);
-					}
-					if (game->combo == 2 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
-					{
-						game->entities->player->score += 400;
-						printf("+400 -----> %i\n", game->entities->player->score);
-					}
-					if (game->combo == 3 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
-					{
-						game->entities->player->score += 800;
-						printf("+800 -----> %i\n", game->entities->player->score);
-					}
-					if (game->combo == 4 && ((game->entities->blinky->life + game->entities->inky->life + game->entities->pinky->life + game->entities->clyde->life) != lifes))
-					{
-						game->entities->player->score += 1600;
-						printf("+1600 -----> %i\n", game->entities->player->score);
-					}
+					lifes[1] = count_lifes_gosts(*game->entities);
+					if (game->combo == 1 && (lifes[1] != lifes[0]))
+						player->score += 200;
+					if (game->combo == 2 && (lifes[1] != lifes[0]))
+						player->score += 400;
+					if (game->combo == 3 && (lifes[1] != lifes[0]))
+						player->score += 800;
+					if (game->combo == 4 && (lifes[1] != lifes[0]))
+						player->score += 1600;
 				}
 			}
 			else if (gost_collision && !game->super_gomme)
 				ft_close(game);
-			else if ( !game->super_gomme)
+			else if (!game->super_gomme)
 			{
-				game->entities->blinky->speed = 4;
-				game->entities->inky->speed = 4;
-				game->entities->pinky->speed = 4;
-				game->entities->clyde->speed = 4;
+				blinky->speed = 4;
+				inky->speed = 4;
+				pinky->speed = 4;
+				clyde->speed = 4;
 			}
-			get_point(game, game->map, game->entities->player);
-			move_entity(*game->window, *game->map, game->entities->pinky, game->map->sprites->black);
-			move_entity(*game->window, *game->map, game->entities->blinky, game->map->sprites->black);
-			move_entity(*game->window, *game->map, game->entities->clyde, game->map->sprites->black);
-			move_entity(*game->window, *game->map, game->entities->inky, game->map->sprites->black);
-			move_entity(*game->window, *game->map, game->entities->player, game->map->sprites->black);
-			anim_player(*game->window, game->entities->player);
-			anim_gost(*game->window, game->entities->pinky, game->super_gomme);
-			anim_gost(*game->window, game->entities->blinky, game->super_gomme);
-			anim_gost(*game->window, game->entities->inky, game->super_gomme);
-			anim_gost(*game->window, game->entities->clyde, game->super_gomme);
+			get_point(game, map, player);
+			move_entity(*game->window, *map, pinky, map->sprites->black);
+			move_entity(*game->window, *map, blinky, map->sprites->black);
+			move_entity(*game->window, *map, clyde, map->sprites->black);
+			move_entity(*game->window, *map, inky, map->sprites->black);
+			move_entity(*game->window, *map, player, map->sprites->black);
+			anim_player(*game->window, player);
+			anim_gost(*game->window, pinky, game->super_gomme);
+			anim_gost(*game->window, blinky, game->super_gomme);
+			anim_gost(*game->window, inky, game->super_gomme);
+			anim_gost(*game->window, clyde, game->super_gomme);
 		}
-		game->time->loop_anim++;
-		if (game->time->loop_anim > (FRAME_RATE - 1))
-			game->time->loop_anim = 0;
-		game->time->lag -= (1000000 / FRAME_RATE);
+		tm->loop_anim++;
+		if (tm->loop_anim > (FRAME_RATE - 1))
+			tm->loop_anim = 0;
+		tm->lag -= (1000000 / FRAME_RATE);
 	}
 	game->entities->player->speed = 4;
+}
+
+int	count_lifes_gosts(t_entities entities)
+{
+	int	lifes;
+
+	lifes = entities.blinky->life + entities.clyde->life;
+	lifes += entities.inky->life + entities.pinky->life;
+	return (lifes);
+}
+
+void	gost_is_dead(t_entity *gost)
+{
+	gost->life = 0;
+	gost->speed = 6;
 }

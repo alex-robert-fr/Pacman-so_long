@@ -479,3 +479,27 @@ void	*check_direction(t_map map, t_entity *entity)
 			return (NULL);
 	}
 }
+
+void	go_left(t_entity *entity)
+{
+	entity->next_direction.x = -1;
+	entity->next_direction.y = 0;
+}
+
+void	go_right(t_entity *entity)
+{
+	entity->next_direction.x = 1;
+	entity->next_direction.y = 0;
+}
+
+void	go_top(t_entity *entity)
+{
+	entity->next_direction.x = 0;
+	entity->next_direction.y = -1;
+}
+
+void	go_down(t_entity *entity)
+{
+	entity->next_direction.x = 0;
+	entity->next_direction.y = 1;
+}

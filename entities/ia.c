@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ia.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/28 00:35:39 by alrobert          #+#    #+#             */
+/*   Updated: 2023/03/28 00:47:11 by alrobert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/pacman.h"
 
-void *choise_direction_ia(t_map map, t_entity *entity)
+void	*choise_direction_ia(t_map map, t_entity *entity)
 {
-	// printf("PACMAN\n");
 	int		num;
 	void	*check;
 
@@ -11,33 +22,16 @@ void *choise_direction_ia(t_map map, t_entity *entity)
 	{
 		num = (rand() % (3 - 0 + 1)) + 0;
 		if (!num)
-		{
-			// ft_putstr_fd("LEFT\n",1);
-			entity->next_direction.x = -1;
-			entity->next_direction.y = 0;
-		}
+			go_left(entity);
 		if (num == 1)
-		{
-			// ft_putstr_fd("UP\n",1);
-			entity->next_direction.x = 0;
-			entity->next_direction.y = -1;
-		}
+			go_top(entity);
 		if (num == 2)
-		{
-			// ft_putstr_fd("RIGHT\n",1);
-			entity->next_direction.x = 1;
-			entity->next_direction.y = 0;
-		}
+			go_right(entity);
 		if (num == 3)
-		{
-			// ft_putstr_fd("DOWN\n",1);
-			entity->next_direction.x = 0;
-			entity->next_direction.y = 1;
-		}
+			go_down(entity);
 		if (!check_direction(map, entity))
-			check = (void*)0;
+			check = (void *) 0;
 		else
-			check = (void*)1;
+			check = (void *) 1;
 	}
-
 }
