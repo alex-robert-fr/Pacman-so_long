@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pacman.h"
+#include <mlx.h>
+#include <math.h>
+#include <stdlib.h>
+#include "pacman.h"
 
 void	*set_spawn_entity(t_window win, t_entity *entity, t_elements elements)
 {
@@ -41,13 +44,13 @@ void	*set_spawn_entity(t_window win, t_entity *entity, t_elements elements)
 	return ((void*)1);
 }
 
-void	*anim_gost(t_window window, t_entity *entity, int super_gomme)
+void	anim_gost(t_window window, t_entity *entity, int super_gomme)
 {
 	int time_anim[3] = {2, 4, 6};
 	anim_move_gost(window, entity, time_anim, super_gomme);
 }
 
-void	*anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_gomme)
+void	anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_gomme)
 {
 	int	pos_x;
 	int	pos_y;
@@ -176,13 +179,13 @@ void	*anim_move_gost(t_window window, t_entity *entity, int *img_time, int super
 	}
 }
 
-void	*anim_player(t_window window, t_entity *entity)
+void	anim_player(t_window window, t_entity *entity)
 {
 	int time_anim[4] = {2, 4, 6 ,8};
 	anim_move_player(window, entity, time_anim);
 }
 
-void	*anim_move_player(t_window window, t_entity *entity, int *img_time)
+void	anim_move_player(t_window window, t_entity *entity, int *img_time)
 {
 	int	pos_x;
 	int	pos_y;
@@ -257,7 +260,7 @@ void	*anim_move_player(t_window window, t_entity *entity, int *img_time)
 	}
 }
 
-void	*move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite)
+void	move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite)
 {
 	float	x_pos = entity->position.x / 24;
 	float	y_pos = entity->position.y / 24;
@@ -343,6 +346,7 @@ void	*check_direction(t_map map, t_entity *entity)
 		if (map.map[(int)y_pos][(int)x_pos - 1] == '1' && y_pos == ceilf(y_pos))
 			return (NULL);
 	}
+	return ((void*)1);
 }
 
 void	go_left(t_entity *entity)

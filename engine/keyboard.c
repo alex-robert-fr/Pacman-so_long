@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pacman.h"
+#include "pacman.h"
 
 int	keyboard(int keycode, t_entity *player)
 {
@@ -22,4 +22,5 @@ int	keyboard(int keycode, t_entity *player)
 		go_right(player);
 	if (keycode == 65364)
 		go_down(player);
+	return (0);
 }

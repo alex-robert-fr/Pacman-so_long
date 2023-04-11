@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pacman.h"
+#include <stdlib.h>
+#include "pacman.h"
 
-void	*choise_direction_ia(t_map map, t_entity *entity)
+void	choise_direction_ia(t_map map, t_entity *entity)
 {
 	int		num;
 	void	*check;

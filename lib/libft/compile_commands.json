@@ -1,0 +1,302 @@
+[
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "ft_printf.o",
+   "ft_printf.c"
+  ],
+  "file": "ft_printf.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "type_management.o",
+   "type_management.c"
+  ],
+  "file": "type_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "convert_management.o",
+   "convert_management.c"
+  ],
+  "file": "convert_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "check_management.o",
+   "check_management.c"
+  ],
+  "file": "check_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "str_convert_manager.o",
+   "str_convert_manager.c"
+  ],
+  "file": "str_convert_manager.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "num_convert_manager.o",
+   "num_convert_manager.c"
+  ],
+  "file": "num_convert_manager.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "create_struct.o",
+   "create_struct.c"
+  ],
+  "file": "create_struct.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "ft_puthexa.o",
+   "ft_puthexa.c"
+  ],
+  "file": "ft_puthexa.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "flag_management.o",
+   "flag_management.c"
+  ],
+  "file": "flag_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/tc/ft_printf",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "margin_management.o",
+   "margin_management.c"
+  ],
+  "file": "margin_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/ft_printf.o",
+   "ft_printf/ft_printf.c"
+  ],
+  "file": "ft_printf/ft_printf.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/type_management.o",
+   "ft_printf/type_management.c"
+  ],
+  "file": "ft_printf/type_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/convert_management.o",
+   "ft_printf/convert_management.c"
+  ],
+  "file": "ft_printf/convert_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/check_management.o",
+   "ft_printf/check_management.c"
+  ],
+  "file": "ft_printf/check_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/str_convert_manager.o",
+   "ft_printf/str_convert_manager.c"
+  ],
+  "file": "ft_printf/str_convert_manager.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/num_convert_manager.o",
+   "ft_printf/num_convert_manager.c"
+  ],
+  "file": "ft_printf/num_convert_manager.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/create_struct.o",
+   "ft_printf/create_struct.c"
+  ],
+  "file": "ft_printf/create_struct.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/ft_puthexa.o",
+   "ft_printf/ft_puthexa.c"
+  ],
+  "file": "ft_printf/ft_puthexa.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/flag_management.o",
+   "ft_printf/flag_management.c"
+  ],
+  "file": "ft_printf/flag_management.c"
+ },
+ {
+  "directory": "/nfs/homes/alrobert/Documents/libft",
+  "arguments": [
+   "clang",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iothers",
+   "-c",
+   "-o",
+   "ft_printf/margin_management.o",
+   "ft_printf/margin_management.c"
+  ],
+  "file": "ft_printf/margin_management.c"
+ }
+]

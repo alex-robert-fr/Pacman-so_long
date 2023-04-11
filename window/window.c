@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <mlx.h>
 #include "../includes/pacman.h"
 
 t_window	*create_window(int x, int y, char *title)

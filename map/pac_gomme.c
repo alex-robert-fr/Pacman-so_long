@@ -1,6 +1,6 @@
 #include "../includes/pacman.h"
 
-void *manage_pacgomme(t_game *game)
+void manage_pacgomme(t_game *game)
 {
 	int	x;
 	int y;

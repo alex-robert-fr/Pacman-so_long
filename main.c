@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
+#include <time.h>
+#include "libft.h"
+#include "ft_printf.h"
 #include "./includes/pacman.h"
 
 int	main(int argc, char *argv[])
@@ -18,17 +22,17 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		printf("With map\n");
+		ft_printf("With map\n");
 		game = start(argv[1]);
 		if (game)
 		{
-			printf("Error\n");
+			ft_printf("Error\n");
 			return (1);
 		}
 	}
 	else
 	{
-		printf("Il manque un argument");
+		ft_printf("Il manque un argument");
 		return (1);
 	}
 	return (0);

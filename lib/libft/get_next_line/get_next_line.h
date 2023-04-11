@@ -6,17 +6,19 @@
 /*   By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 13:19:56 by alex              #+#    #+#             */
-/*   Updated: 2023/02/27 15:54:14 by alrobert         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:45:32 by alrobert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 10000
-#endif
+#ifndef GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "../libft/libft.h"
 char	*get_next_line(int fd);
+char	*ft_free(char *buf, char *tmp_buf);
+char	*check_read(int end_line, int fd, char *buf, char *tmp_buf);
+#endif

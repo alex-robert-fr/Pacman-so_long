@@ -1,79 +1,48 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: alrobert <alrobert@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/27 14:23:23 by alrobert          #+#    #+#              #
-#    Updated: 2023/02/27 14:01:43 by alrobert         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME		=	libft.a
+CC			=	clang
+CFLAGS		=	-Wall -Wextra -Werror -Iothers -g
+LIBFT_PATH	=	./others/
+LIBFT_NAME	=	others.a
+SRC			=	./ft_printf/ft_printf.c				\
+				./ft_printf/type_management.c		\
+				./ft_printf/convert_management.c	\
+				./ft_printf/check_management.c		\
+				./ft_printf/str_convert_manager.c	\
+				./ft_printf/num_convert_manager.c	\
+				./ft_printf/create_struct.c			\
+				./ft_printf/ft_puthexa.c			\
+				./get_next_line/get_next_line.c		\
+				./get_next_line/get_next_line_utils.c
+NO_BONUS	=	./ft_printf/flag_management.c		\
+				./ft_printf/margin_management.c
+BONUS		=	./ft_printf/flag_management_bonus.c	\
+				./ft_printf/margin_management_bonus.c
+OBJ			=	$(SRC:.c=.o)
+NB_OBJ		=	$(NO_BONUS:.c=.o)
+B_OBJ		=	$(BONUS:.c=.o)
 
-NAME = libft.a
-CC = gcc
-SRC = ft_atoi.c \
-	ft_isdigit.c \
-	ft_memcpy.c \
-	ft_putstr_fd.c \
-	ft_strjoin.c \
-	ft_strnstr.c \
-	ft_bzero.c \
-	ft_isprint.c \
-	ft_memmove.c \
-	ft_strlcat.c \
-	ft_strrchr.c \
-	ft_calloc.c \
-	ft_itoa.c \
-	ft_memset.c \
-	ft_split.c \
-	ft_strlcpy.c \
-	ft_strtrim.c \
-	ft_isalnum.c \
-	ft_putchar_fd.c \
-	ft_strchr.c \
-	ft_strlen.c \
-	ft_substr.c \
-	ft_isalpha.c \
-	ft_memchr.c \
-	ft_putendl_fd.c \
-	ft_strdup.c \
-	ft_strmapi.c \
-	ft_tolower.c \
-	ft_isascii.c \
-	ft_memcmp.c \
-	ft_putnbr_fd.c \
-	ft_striteri.c \
-	ft_strncmp.c \
-	ft_toupper.c \
-	ft_int_to_binary.c \
-	ft_binary_to_int.c \
-	ft_get_file_name.c
-BONUS = ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstmap.c
-CFLAGS = -Wall -Wextra -Werror
-OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(BONUS:.c=.o)
+all: $(LIBFT_NAME) $(NAME)
 
+$(NAME): $(OBJ) $(NB_OBJ)
+	ar rcsT $(NAME) $(OBJ) $(NB_OBJ) $(LIBFT_PATH)$(LIBFT_NAME)
 
-$(NAME):
-	$(CC) -c $(SRC) $(CFLAGS) -g
-	ar rcs $(NAME) $(OBJ)
+$(LIBFT_NAME):
+	make -C $(LIBFT_PATH)
+
 clean:
-	@rm -f $(OBJ) $(OBJ_BONUS)
+	make clean -C $(LIBFT_PATH)
+	rm -f $(OBJ) $(NB_OBJ) $(B_OBJ)
+
 fclean: clean
-	@rm -f $(NAME)
+	make fclean -C $(LIBFT_PATH)
+	rm -f $(NAME)
+
 re: fclean all
-bonus:
-	$(CC) -c $(SRC) $(BONUS) $(CFLAGS)
-	ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
-all: $(NAME)
+
+bonus: fclean $(LIBFT_NAME) b 
+
+b: $(OBJ) $(B_OBJ)
+	ar rcsT $(NAME) $(OBJ) $(B_OBJ) $(LIBFT_PATH)$(LIBFT_NAME)
+
 .PHONY:
 	all clear fclean re bonus

@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include "libft.h"
+#include "ft_printf.h"
+#include "get_next_line.h"
 #include "../includes/pacman.h"
 
 void	*check_file(char *map_file, t_game *game)
@@ -91,7 +97,7 @@ t_map	*read_and_check_map(char *map_file)
 	size.x = ft_strlen(str);
 	while (str)
 	{
-		printf("=> %s\n", str);
+		ft_printf("=> %s\n", str);
 		next_str = gnl_trim(fd, "\n");
 		if (size.x != (int)ft_strlen(str))
 			error = 1;
@@ -136,7 +142,7 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 	map = ft_calloc(info_map.size.y + 1, sizeof(char*));
 	if (!map)
 		return (0);
-	printf("%f ----------------------------\n", info_map.size.y);
+	ft_printf("%f ----------------------------\n", info_map.size.y);
 	line = 0;
 	str = gnl_trim(fd, "\n");
 	while (str)
@@ -144,7 +150,7 @@ char	**set_map_in_array(t_map info_map, char *map_file)
 		map[line] = ft_strdup(str);
 		if (str)
 			free(str);
-		printf("%i => %s\n", line, map[line]);
+		ft_printf("%i => %s\n", line, map[line]);
 		str = gnl_trim(fd, "\n");
 		line++;
 	}

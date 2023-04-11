@@ -1,6 +1,6 @@
 #ifndef PACMAN_H
 # define PACMAN_H
-#include <mlx.h>
+/*
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 #include <time.h>
 #include "../lib/libft/libft.h"
 #include "../lib/get_next_line/get_next_line.h"
+*/
 
 typedef struct s_time
 {
@@ -183,27 +184,27 @@ void		go_down(t_entity *entity);
 void		*load_img(t_window win, char *name, int x, int y);
 int			check_path(char *path);
 int			check_wall(char *str, int len, t_walls wall);
-void		*anim_gost(t_window window, t_entity *entity, int super_gomme);
+void		anim_gost(t_window window, t_entity *entity, int super_gomme);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
 void		*mlx_xpm_file_to_image(void *mlx, char *img, int *x, int *y);
 void		*generate_map(t_map *map, t_window window);
 void		put_map_sprite_to_window(t_window win, t_sprite_map *sprite, int x, int y);
-void		*manage_pacgomme(t_game *game);
+void		manage_pacgomme(t_game *game);
 int			check_life_player(t_entities *entities);
-void		*get_point(t_game *game, t_map *map, t_entity *player);
+void		get_point(t_game *game, t_map *map, t_entity *player);
 void		*mlx_init();
-void		*anim_player(t_window window, t_entity *entity);
+void		anim_player(t_window window, t_entity *entity);
 void		*mlx_new_window(void *mlx, int x, int y, char *title);
 void		*set_entities_map(char	**map, t_entities *entities);
 void		*set_spawn_entity(t_window window, t_entity *entity, t_elements element);
-void		loop_time(t_game *game);
+int			loop_time(t_game *game);
 int			render_next_frame(t_game *game);
-void    	*display_ui(t_game *game);
-void		*move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite);
-void		*anim_move_player(t_window window, t_entity *entity, int *img_time);
-void		*anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_gomme);
-void		*choise_direction_ia(t_map map, t_entity *entity);
+void    	display_ui(t_game *game);
+void		move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite);
+void		anim_move_player(t_window window, t_entity *entity, int *img_time);
+void		anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_gomme);
+void		choise_direction_ia(t_map map, t_entity *entity);
 int			keyboard(int keycode, t_entity *player);
 void		*check_direction(t_map map, t_entity *entity);
 t_vector	v_zero();
@@ -212,4 +213,7 @@ void		*check_file(char *map_file, t_game *game);
 t_map		*read_and_check_map(char *map_file);
 t_sprites	*import_imgs(t_window window);
 t_window	*create_window(int x, int y, char *title);
+void		gost_is_dead(t_entity *gost);
+int			check_collision_with_gost(t_vector player_pos, t_vector pos);
+int			count_lifes_gosts(t_entities entities);
 #endif

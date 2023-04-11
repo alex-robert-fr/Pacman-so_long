@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pacman.h"
+#include <stdlib.h>
+#include "libft.h"
+#include "pacman.h"
 
 t_sprites	*import_imgs(t_window win)
 {

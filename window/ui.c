@@ -1,6 +1,9 @@
-#include "../includes/pacman.h"
+#include <mlx.h>
+#include <stdlib.h>
+#include "libft.h"
+#include "pacman.h"
 
-void    *display_ui(t_game *game)
+void    display_ui(t_game *game)
 {
 	char	*score;
 

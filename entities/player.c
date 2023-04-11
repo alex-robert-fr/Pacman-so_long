@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pacman.h"
+#include <math.h>
+#include "pacman.h"
 
-void	*get_point(t_game *game, t_map *map, t_entity *player)
+void	get_point(t_game *game, t_map *map, t_entity *player)
 {
 	int	x_pos;
 	int	y_pos;

@@ -1,0 +1,37 @@
+[
+ {
+  "directory": "/nfs/homes/alrobert/Documents/Pacman-so_long",
+  "arguments": [
+   "clang",
+   "-Ilib/libft/others/",
+   "-Ilib/libft/ft_printf/",
+   "-Ilib/libft/get_next_line/",
+   "-Ilib/minilibx-linux/",
+   "-Iincludes/",
+   "main.c",
+   "./engine/images.c",
+   "./engine/keyboard.c",
+   "./engine/time.c",
+   "./engine/vector.c",
+   "./map/check_map.c",
+   "./map/generate_map.c",
+   "./map/pac_gomme.c",
+   "./entities/entity.c",
+   "./entities/ia.c",
+   "./entities/player.c",
+   "./window/ui.c",
+   "./window/window.c",
+   "-Llib/minilibx-linux",
+   "-lmlx",
+   "-L/usr/lib",
+   "-lXext",
+   "-lX11",
+   "-lm",
+   "lib/libft/libft.a",
+   "-o",
+   "so_long",
+   "-g"
+  ],
+  "file": "./window/window.c"
+ }
+]

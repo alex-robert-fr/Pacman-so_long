@@ -1,3 +1,4 @@
+#include <mlx.h>
 #include "../includes/pacman.h"
 
 void	*generate_map(t_map *map, t_window window)

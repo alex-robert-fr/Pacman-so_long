@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pacman.h"
+#include <time.h>
+#include "ft_printf.h"
+#include "pacman.h"
 #define FRAME_RATE 100
 
-void	loop_time(t_game *game)
+int	loop_time(t_game *game)
 {
 	t_entities	*entities;
 	t_time		*tm;
@@ -48,7 +50,7 @@ void	loop_time(t_game *game)
 		{
 			if (game->super_gomme < 10 && game->super_gomme != 0)
 			{
-				printf("Time: %i\n", game->super_gomme);
+				ft_printf("Time: %i\n", game->super_gomme);
 				if (game->super_gomme == 9)
 				{
 					game->super_gomme = 0;
@@ -147,6 +149,7 @@ void	loop_time(t_game *game)
 		tm->lag -= (1000000 / FRAME_RATE);
 	}
 	game->entities->player->speed = 4;
+	return (0);
 }
 
 int	count_lifes_gosts(t_entities entities)

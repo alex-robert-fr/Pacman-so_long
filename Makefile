@@ -1,47 +1,38 @@
 NAME		=	so_long
-CC		=	gcc
-LIB_PATH	=	lib/
-SRC		=	main.c
-MAP_SRC		=	./map/check_map.c \
-				./map/generate_map.c \
-				./map/pac_gomme.c	
-ENGINE_SRC	=	./engine/vector.c \
-				./engine/images.c \
-				./engine/time.c   \
-				./engine/keyboard.c
-WIN_SRC		=	./window/window.c \
-				./window/ui.c
-ENTITY_SRC	=	./entities/entity.c \
-				./entities/ia.c \
-				./entities/player.c
-LIBFT_PATH	=	$(LIB_PATH)libft
+CC			=	clang
+SRC			=	main.c						\
+				./engine/images.c			\
+				./engine/keyboard.c			\
+				./engine/time.c				\
+				./engine/vector.c			\
+				./map/check_map.c			\
+				./map/generate_map.c		\
+				./map/pac_gomme.c			\
+				./entities/entity.c			\
+				./entities/ia.c				\
+				./entities/player.c			\
+				./window/ui.c				\
+				./window/window.c
+LIBFT		=	lib/libft/others/
+FT_PRINTF	=	lib/libft/ft_printf/
+GNL			=	lib/libft/get_next_line/
+MLX			=	lib/minilibx-linux/
 LIBFT_NAME	=	libft.a
-MLX_PATH	=	$(LIB_PATH)minilibx-linux
-MLX_NAME	=	mlx_Linux
-GNL_PATH	=	$(LIB_PATH)get_next_line/
-GNL_SRC		=	$(GNL_PATH)get_next_line.c \
-			$(GNL_PATH)get_next_line_utils.c
+CFLAGS		=	-I$(LIBFT) -I$(FT_PRINTF) -I$(GNL) -I$(MLX) -Iincludes/
 
-all: $(LIBFT_NAME) $(NAME) #$(MLX_NAME)
+all: $(LIBFT_NAME) $(NAME)
 
 $(NAME):
-	$(CC) -g -I$(LIB_PATH)minilibx-linux/ $(SRC) $(WIN_SRC) $(MAP_SRC) $(ENTITY_SRC) $(ENGINE_SRC) $(GNL_SRC) -L$(LIB_PATH)minilibx-linux -l$(MLX_NAME) -L/usr/lib -lXext -lX11 -lm $(LIBFT_PATH)/$(LIBFT_NAME) -o $(NAME) #-Wextra -Wall -Werror
+	$(CC) $(CFLAGS) $(SRC) -Llib/minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm lib/libft/$(LIBFT_NAME) -o $(NAME) -g
 	
 $(LIBFT_NAME):
-	make -C $(LIBFT_PATH)
-
-$(MLX_NAME):
-	make -C $(MLX_PATH)
+	make -C lib/libft
 
 clean:
-	make clean -C $(LIBFT_PATH)
-	#make clean -C $(MLX_PATH)
+	make clean -C lib/libft
 
 fclean: clean
-	make fclean -C $(LIBFT_PATH)
-	rm $(NAME)
+	make fclean -C lib/libft
+	rm -f $(NAME)
 
 re: fclean all
-
-run: all
-	./$(NAME)
