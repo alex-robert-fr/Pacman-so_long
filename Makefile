@@ -18,7 +18,7 @@ FT_PRINTF	=	lib/libft/ft_printf/
 GNL			=	lib/libft/get_next_line/
 MLX			=	lib/minilibx-linux/
 LIBFT_NAME	=	libft.a
-CFLAGS		=	-I$(LIBFT) -I$(FT_PRINTF) -I$(GNL) -I$(MLX) -Iincludes/
+CFLAGS		=	-I$(LIBFT) -I$(FT_PRINTF) -I$(GNL) -I$(MLX) -Iincludes/ -Werror -Wall -Wextra
 
 all: $(LIBFT_NAME) $(NAME)
 

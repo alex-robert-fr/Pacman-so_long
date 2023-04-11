@@ -99,8 +99,7 @@ typedef struct s_entity
 	int			life;
 	union
 	{
-		void			*sprite;
-		t_gost_anim		*gost;
+		void			*gost;
 		t_player_anim	*player;
 	}	u_sprites;
 }	t_entity;
@@ -133,9 +132,7 @@ void		import_imgs_1(t_window win, t_sprites *sprites, int x, int y);
 void		import_imgs_2(t_window win, t_sprites *sprites, int x, int y);
 void		import_imgs_player(t_window win, t_player_anim *sprites, int size);
 void		imprt_imgs_gost(t_window win, t_gost_anim *gost, t_elements type , int s);
-void		import_imgs_gosts_blue(t_window win, t_gost_anim *gost, int s);
 char		*get_text_imgs_gosts(int direction, int index, t_elements type_gost);
-void		imprt_imgs_gosts_eyes(int dirct, t_window win, t_gost_anim *gost, int s);
 void		go_left(t_entity *entity);
 void		go_right(t_entity *entity);
 void		go_top(t_entity *entity);

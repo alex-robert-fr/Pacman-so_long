@@ -17,7 +17,6 @@
 
 int	loop_time(t_game *game)
 {
-	t_entities	*entities;
 	t_time		*tm;
 	int			gost_collision;
 	int			count_combo;

@@ -38,8 +38,14 @@ void	*set_spawn_entity(t_window win, t_entity *entity, t_elements elements)
 	else
 	{
 		entity->speed = 4;
-		imprt_imgs_gost(win, entity->u_sprites.gost, elements, s);
-		import_imgs_gosts_blue(win, entity->u_sprites.gost, s);
+		if (elements == BLINKY)
+			entity->u_sprites.gost = load_img(win, "blinky_r_0.xpm", 24, 24);
+		if (elements == INKY)
+			entity->u_sprites.gost = load_img(win, "inky_r_0.xpm", 24, 24);
+		if (elements == PINKY)
+			entity->u_sprites.gost = load_img(win, "pinky_r_0.xpm", 24, 24);
+		if (elements == CLYDE)
+			entity->u_sprites.gost = load_img(win, "clyde_r_0.xpm", 24, 24);
 	}
 	return ((void*)1);
 }
@@ -62,38 +68,38 @@ void	anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_
 		if (entity->direction.x > 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[0].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[0].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.x < 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[0].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[0].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.y > 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[0].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[0].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.y < 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[0].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[0].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		entity->index_anim++;
 	}
@@ -102,38 +108,38 @@ void	anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_
 		if (entity->direction.x > 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[1].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[1].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.x < 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[1].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[1].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.y > 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[1].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[1].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.y < 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[1].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[1].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		entity->index_anim++;
 	}
@@ -142,38 +148,38 @@ void	anim_move_gost(t_window window, t_entity *entity, int *img_time, int super_
 		if (entity->direction.x > 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[2].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->right[2].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.x < 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[2].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->left[2].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.y > 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[2].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->bottom[2].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		if (entity->direction.y < 0)
 		{
 			if (!entity->life)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[3].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else if (super_gomme)
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[2].blue, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 			else
-				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost->top[2].original, pos_x, pos_y);
+				mlx_put_image_to_window(window.mlx, window.win, entity->u_sprites.gost, pos_x, pos_y);
 		}
 		entity->index_anim = 0;
 	}

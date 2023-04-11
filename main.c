@@ -104,7 +104,5 @@ void	*init_entity(int is_player)
 	entity->index_anim = 0;
 	if (is_player)
 		entity->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
-	else
-		entity->u_sprites.gost = ft_calloc(sizeof(t_gost_anim), 1);
 	return (entity);
 }
