@@ -2,6 +2,7 @@
 
 void manage_pacgomme(t_game *game)
 {
+	/*
 	int	x;
 	int y;
 	int	is_win;
@@ -28,4 +29,6 @@ void manage_pacgomme(t_game *game)
 	}
 	if (is_win)
 		ft_close(game);
+		*/
+	(void)game;
 }

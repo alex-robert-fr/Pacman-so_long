@@ -1,15 +1,5 @@
 #ifndef PACMAN_H
 # define PACMAN_H
-/*
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h> 
-#include <time.h>
-#include "../lib/libft/libft.h"
-#include "../lib/get_next_line/get_next_line.h"
-*/
 
 typedef struct s_time
 {
@@ -60,38 +50,7 @@ typedef struct s_sprite_map
 
 typedef struct s_sprites
 {
-	t_sprite_map	sp0_0;
-	t_sprite_map	sp0_1;
-	t_sprite_map	sp1_0;
-	t_sprite_map	sp2_0;
-	t_sprite_map	sp2_2;
-	t_sprite_map	sp3_0;
-	t_sprite_map	sp3_2;
-	t_sprite_map	sp4_0;
-	t_sprite_map	sp4_1;
-	t_sprite_map	sp4_2;
-	t_sprite_map	sp5_0;
-	t_sprite_map	sp5_2;
-	t_sprite_map	sp6_0;
-	t_sprite_map	sp6_1;
-	t_sprite_map	sp7_0;
-	t_sprite_map	sp7_1;
-	t_sprite_map	sp8_0;
-	t_sprite_map	sp8_1;
-	t_sprite_map	sp9_0;
-	t_sprite_map	sp9_1;
-	t_sprite_map	sp9_2;
-	t_sprite_map	sp10_0;
-	t_sprite_map	sp10_1;
-	t_sprite_map	sp10_2;
 	t_sprite_map	sp12_2;
-	t_sprite_map	sp11_2;
-	t_sprite_map	sp12_3;
-	t_sprite_map	sp13_0;
-	t_sprite_map	sp13_2;
-	t_sprite_map	sp13_3;
-	t_sprite_map	sp14_0;
-	t_sprite_map	sp15_2;
 	t_sprite_map	spxxx;
 	t_sprite_map	black;
 }	t_sprites;
