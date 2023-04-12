@@ -16,13 +16,13 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include "get_next_line.h"
-#include "../includes/pacman.h"
+#include "pacman.h"
 
 void	*check_file(char *map_file, t_game *game)
 {
 	if (check_path(map_file))
 		return (NULL);
-	game->map = read_and_check_map(map_file);
+	game->map = check_map(map_file);
 	if (!game->map)
 		return (NULL);
 	game->map->map = set_map_in_array(*game->map, map_file);
@@ -46,7 +46,63 @@ int	check_path(char *map_file)
 	return (0);
 }
 
-int	check_wall(char *str, int len, t_walls wall)
+//Pas de troue dans le mur
+//Pas impossible a realiser
+//Il y a 1 sorti et 1 player
+//Il y a au moins 1 item
+t_map	*check_map(char *map_file)
+{
+	t_check_map	checks;
+	char		*str;
+	char		*next_str;
+	t_map		*map;
+	t_vector	size;
+
+	checks.have_player = 0;
+	checks.fd = open(map_file, O_RDONLY);
+	map = malloc(sizeof(t_map));
+	str = gnl_trim(checks.fd, "\n");
+	if (!str || !map)
+		return (0);
+	checks.error = 0;
+	checks.last_line = 0;
+	size = v_zero();
+	size.x = ft_strlen(str);
+	while (str)
+	{
+		ft_printf("=> %s\n", str);
+		next_str = gnl_trim(checks.fd, "\n");
+		if (size.x != (int)ft_strlen(str))
+			checks.error = 1;
+		if (!next_str)
+		{
+			if (check_wall_and_entity(str, size.x, DOWN, &checks))
+				checks.error = 1;
+			checks.last_line = 1;
+		}
+		if (!size.y && !checks.last_line)
+		{
+			if (check_wall_and_entity(str, size.x, UP, &checks))
+				checks.error = 1;
+		}
+		else if (!checks.last_line && size.y && check_wall_and_entity(str, size.x, CENTER, &checks))
+			checks.error = 1;
+		size.y++;
+		if (str)
+			free(str);
+		str = next_str;
+	}
+	close(checks.fd);
+	if (checks.error || !checks.have_player || checks.have_player > 1)
+	{
+		free(map);
+		return (NULL);
+	}
+	map->size = size;
+	return (map);
+}
+
+int	check_wall_and_entity(char *str, int len, t_walls wall, t_check_map *checks)
 {
 	int	i;
 
@@ -64,9 +120,11 @@ int	check_wall(char *str, int len, t_walls wall)
 	{
 		while (i < len)
 		{
+			if (str[i] == PLAYER)
+				checks->have_player++;
 			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
-			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE) //! REFACTOR
+			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER) //! REFACTOR
 					return (1);
 			i++;
 		}
@@ -74,60 +132,6 @@ int	check_wall(char *str, int len, t_walls wall)
 	return (0);
 }
 
-t_map	*read_and_check_map(char *map_file)
-{
-	int			fd;
-	int			error;
-	int			last_line;
-	char		*str;
-	char		*next_str;
-	t_map		*map;
-	t_vector	size;
-
-	fd = open(map_file, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	map = malloc(sizeof(t_map));
-	str = gnl_trim(fd, "\n");
-	if (!str || !map)
-		return (0);
-	error = 0;
-	last_line = 0;
-	size = v_zero();
-	size.x = ft_strlen(str);
-	while (str)
-	{
-		ft_printf("=> %s\n", str);
-		next_str = gnl_trim(fd, "\n");
-		if (size.x != (int)ft_strlen(str))
-			error = 1;
-		if (!next_str)
-		{
-			if (check_wall(str, size.x, DOWN))
-				error = 1;
-			last_line = 1;
-		}
-		if (!size.y && !last_line)
-		{
-			if (check_wall(str, size.x, UP))
-				error = 1;
-		}
-		else if (!last_line && size.y && check_wall(str, size.x, CENTER))
-			error = 1;
-		size.y++;
-		if (str)
-			free(str);
-		str = next_str;
-	}
-	close(fd);
-	if (error)
-	{
-		free(map);
-		return (0);
-	}
-	map->size = size;
-	return (map);
-}
 
 char	**set_map_in_array(t_map info_map, char *map_file)
 {

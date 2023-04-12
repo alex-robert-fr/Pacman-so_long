@@ -56,6 +56,14 @@ typedef struct s_map
 	t_sprites	*sprites;
 }	t_map;
 
+typedef struct s_check_map
+{
+	int fd;
+	int error;
+	int	last_line;
+	int	have_player;
+}	t_check_map;
+
 typedef struct s_entity
 {
 	t_vector	position;
@@ -84,12 +92,20 @@ typedef struct s_game {
 	t_time		*time;
 }	t_game;
 
-t_game		*init_game();
+/*----GAME----*/
 int			start(char *map_file);
+t_game		*init_game(void);
+void		*init_entity(void);
+
+/*----MAP----*/
+void		*check_file(char *map_file, t_game *game);
+int			check_path(char *path);
+t_map		*check_map(char *map_file);
+int			check_wall_and_entity(char *str, int len, t_walls wall, t_check_map *checks);
+
 int			mlx_loop(void *mlx);
 int			ft_close(t_game *game);
 int			spawn_entities(t_game *game);
-void		*init_entity(int is_player);
 void		import_imgs_1(t_window win, t_sprites *sprites, int x, int y);
 void		import_imgs_2(t_window win, t_sprites *sprites, int x, int y);
 //void		import_imgs_player(t_window win, t_player_anim *sprites, int size);
@@ -100,8 +116,6 @@ void		go_right(t_entity *entity);
 void		go_top(t_entity *entity);
 void		go_down(t_entity *entity);
 void		*load_img(t_window win, char *name, int x, int y);
-int			check_path(char *path);
-int			check_wall(char *str, int len, t_walls wall);
 void		anim_gost(t_window window, t_entity *entity, int super_gomme);
 char		*gnl_trim(int fd, char const *set);
 char		**set_map_in_array(t_map info_map, char *map_file);
@@ -127,8 +141,6 @@ int			keyboard(int keycode, t_entity *player);
 void		*check_direction(t_map map, t_entity *entity);
 t_vector	v_zero();
 t_vector	v_init(int x, int y);
-void		*check_file(char *map_file, t_game *game);
-t_map		*read_and_check_map(char *map_file);
 t_sprites	*import_imgs(t_window window);
 t_window	*create_window(int x, int y, char *title);
 void		gost_is_dead(t_entity *gost);

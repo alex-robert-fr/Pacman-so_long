@@ -14,7 +14,7 @@
 #include <time.h>
 #include "libft.h"
 #include "ft_printf.h"
-#include "./includes/pacman.h"
+#include "pacman.h"
 
 int	main(int argc, char *argv[])
 {
@@ -87,22 +87,19 @@ t_game	*init_game(void)
 	game->time->lag = 0;
 	game->time->loop_anim = 0;
 	game->entities = ft_calloc(sizeof(t_entities), 1);
-	game->entities->player = init_entity(1);
-	game->entities->blinky = init_entity(0);
-	game->entities->inky = init_entity(0);
-	game->entities->pinky = init_entity(0);
-	game->entities->clyde = init_entity(0);
+	game->entities->player = init_entity();
+	game->entities->blinky = init_entity();
+	game->entities->inky = init_entity();
+	game->entities->pinky = init_entity();
+	game->entities->clyde = init_entity();
 	return (game);
 }
 
-void	*init_entity(int is_player)
+void	*init_entity(void)
 {
 	t_entity	*entity;
 
 	entity = ft_calloc(sizeof(t_entity), 1);
 	entity->life = 1;
-	(void)is_player;
-//	if (is_player)
-//		entity->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
 	return (entity);
 }
