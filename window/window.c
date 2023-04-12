@@ -20,20 +20,8 @@ int			ft_close(t_game *game)
 
 	i = 0;
 	mlx_loop_end(game->window->mlx);
-	mlx_destroy_image(game->window->mlx, game->map->sprites->spxxx.original);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->original);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->right[0]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->right[1]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->right[2]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->left[0]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->left[1]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->left[2]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->top[0]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->top[1]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->top[2]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->bottom[0]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->bottom[1]);
-	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player->bottom[2]);
+	mlx_destroy_image(game->window->mlx, game->map->sprites->spxxx);
+	mlx_destroy_image(game->window->mlx, game->entities->player->u_sprites.player);
 	mlx_destroy_image(game->window->mlx, game->entities->blinky->u_sprites.gost);
 	mlx_destroy_image(game->window->mlx, game->entities->inky->u_sprites.gost);
 	mlx_destroy_image(game->window->mlx, game->entities->pinky->u_sprites.gost);

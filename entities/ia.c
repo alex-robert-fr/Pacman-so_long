@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "pacman.h"
 
-void	choise_direction_ia(t_map map, t_entity *entity)
+void	choise_direction_ia(t_entity *entity)//t_map map, 
 {
 	int		num;
 	void	*check;
@@ -30,9 +30,9 @@ void	choise_direction_ia(t_map map, t_entity *entity)
 			go_right(entity);
 		if (num == 3)
 			go_down(entity);
-		if (!check_direction(map, entity))
-			check = (void *) 0;
 		else
 			check = (void *) 1;
+		//if (!check_direction(map, entity))
+		//	check = (void *) 0;
 	}
 }

@@ -13,26 +13,6 @@
 #include <math.h>
 #include "pacman.h"
 
-void	get_point(t_game *game, t_map *map, t_entity *player)
-{
-	int	x_pos;
-	int	y_pos;
-
-	x_pos = player->position.x / 24;
-	y_pos = player->position.y / 24;
-	if (map->map[y_pos][x_pos] == '0')
-	{
-		map->map[y_pos][x_pos] = 'x';
-		player->score += 10;
-	}
-	if (map->map[y_pos][x_pos] == SUPER)
-	{
-		map->map[y_pos][x_pos] = 'x';
-		player->score += 50;
-		game->super_gomme = 1;
-	}
-}
-
 int	check_life_player(t_entities *entities)
 {
 	t_vector	player_pos;

@@ -66,7 +66,7 @@ int	check_wall(char *str, int len, t_walls wall)
 		{
 			if (str[0] != WALL || str[len - 1] != WALL)
 				return (1);
-			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE && str[i] != SUPER) //! REFACTOR
+			else if ((i > 0 && i < len - 1) && str[i] != EMPTY && str[i] != WALL && str[i] != PLAYER && str[i] != BLINKY && str[i] != INKY && str[i] != PINKY && str[i] != CLYDE) //! REFACTOR
 					return (1);
 			i++;
 		}

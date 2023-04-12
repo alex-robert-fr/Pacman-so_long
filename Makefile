@@ -11,7 +11,6 @@ SRC			=	main.c						\
 				./entities/entity.c			\
 				./entities/ia.c				\
 				./entities/player.c			\
-				./window/ui.c				\
 				./window/window.c
 LIBFT		=	lib/libft/others/
 FT_PRINTF	=	lib/libft/ft_printf/

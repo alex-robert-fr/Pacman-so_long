@@ -47,11 +47,11 @@ int	start(char *map_file)
 	if (!check_file(map_file, game))
 		return (1);
 	size = game->map->size;
-	game->window = create_window(size.x * 24, (size.y + 2) * 24, "Pacman");
+	game->window = create_window(size.x * 24, size.y * 24, "Pacman");
 	usleep(10000);
 	generate_map(game->map, *game->window);
-	//if (!spawn_entities(game))
-	//	return (1);
+	if (!spawn_entities(game))
+		return (1);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
 	mlx_loop_hook(game->window->mlx, loop_time, game);
 	mlx_key_hook(game->window->win, keyboard, game->entities->player);
@@ -64,6 +64,7 @@ int	spawn_entities(t_game *game)
 {
 	if (!set_spawn_entity(*game->window, game->entities->player, PLAYER))
 		return (0);
+	/*
 	if (!set_spawn_entity(*game->window, game->entities->blinky, BLINKY))
 		return (0);
 	if (!set_spawn_entity(*game->window, game->entities->inky, INKY))
@@ -72,6 +73,7 @@ int	spawn_entities(t_game *game)
 		return (0);
 	if (!set_spawn_entity(*game->window, game->entities->clyde, CLYDE))
 		return (0);
+		*/
 	return (1);
 }
 
@@ -80,8 +82,6 @@ t_game	*init_game(void)
 	t_game	*game;
 
 	game = ft_calloc(sizeof(t_game), 1);
-	game->super_gomme = 0;
-	game->combo = 0;
 	game->time = ft_calloc(sizeof(t_time), 1);
 	game->time->previous_time = clock();
 	game->time->lag = 0;
@@ -101,8 +101,8 @@ void	*init_entity(int is_player)
 
 	entity = ft_calloc(sizeof(t_entity), 1);
 	entity->life = 1;
-	entity->index_anim = 0;
-	if (is_player)
-		entity->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
+	(void)is_player;
+//	if (is_player)
+//		entity->u_sprites.player = ft_calloc(sizeof(t_player_anim), 1);
 	return (entity);
 }

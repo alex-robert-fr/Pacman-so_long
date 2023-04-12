@@ -19,7 +19,6 @@ int	loop_time(t_game *game)
 {
 	t_time		*tm;
 	//int			gost_collision;
-	int			count_combo;
 	int			lifes[2];
 	/*
 	t_entity	*player;
@@ -30,8 +29,6 @@ int	loop_time(t_game *game)
 	*/
 	t_map		*map;
 
-	count_combo = 0;
-	game->combo = 0;
 	map = game->map;
 	tm = game->time;
 	/*
@@ -60,8 +57,6 @@ int	loop_time(t_game *game)
 		*/
 		if (tm->loop_anim % (FRAME_RATE / (FRAME_RATE / 2)) == 0)
 		{
-			display_ui(game);
-			manage_pacgomme(game);
 			/*
 			if (gost_collision && !game->super_gomme)
 				ft_close(game);
@@ -82,7 +77,6 @@ int	loop_time(t_game *game)
 			tm->loop_anim = 0;
 		tm->lag -= (1000000 / FRAME_RATE);
 	}
-	game->entities->player->speed = 4;
 	return (0);
 }
 
@@ -93,10 +87,4 @@ int	count_lifes_gosts(t_entities entities)
 	lifes = entities.blinky->life + entities.clyde->life;
 	lifes += entities.inky->life + entities.pinky->life;
 	return (lifes);
-}
-
-void	gost_is_dead(t_entity *gost)
-{
-	gost->life = 0;
-	gost->speed = 6;
 }
