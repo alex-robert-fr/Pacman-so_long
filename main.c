@@ -50,8 +50,8 @@ int	start(char *map_file)
 	game->window = create_window(size.x * 24, (size.y + 2) * 24, "Pacman");
 	usleep(10000);
 	generate_map(game->map, *game->window);
-	if (!spawn_entities(game))
-		return (1);
+	//if (!spawn_entities(game))
+	//	return (1);
 	mlx_hook(game->window->win, 17, 0, ft_close, game);
 	mlx_loop_hook(game->window->mlx, loop_time, game);
 	mlx_key_hook(game->window->win, keyboard, game->entities->player);
