@@ -13,6 +13,7 @@
 #include <mlx.h>
 #include <math.h>
 #include <stdlib.h>
+#include "ft_printf.h"
 #include "pacman.h"
 
 void	*set_spawn_entity(t_window win, t_entity *entity, t_elements elements)
@@ -88,6 +89,7 @@ void	move_entity(t_window window, t_map map, t_entity *entity)//, t_sprite_map b
 	float	x_pos = entity->position.x / 24;
 	float	y_pos = entity->position.y / 24;
 
+	ft_printf("X: %i, Y: %i\n", entity->position.x, entity->position.y);
 //	check_direction(map, entity);
 	if (entity->direction.x > 0)
 	{

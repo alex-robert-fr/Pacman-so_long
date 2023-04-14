@@ -133,7 +133,7 @@ void		*set_spawn_entity(t_window window, t_entity *entity, t_elements element);
 int			loop_time(t_game *game);
 int			render_next_frame(t_game *game);
 void    	display_ui(t_game *game);
-//void		move_entity(t_window window, t_map map, t_entity *entity, t_sprite_map black_sprite);
+void		move_entity(t_window window, t_map map, t_entity *entity);
 void		anim_move_player(t_window window, t_entity *entity, int *img_time);
 void		anim_move_gost(t_window window, t_entity *entity);
 void		choise_direction_ia(t_entity *entity);

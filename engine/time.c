@@ -20,8 +20,8 @@ int	loop_time(t_game *game)
 	t_time		*tm;
 	//int			gost_collision;
 	int			lifes[2];
-	/*
 	t_entity	*player;
+	/*
 	t_entity	*blinky;
 	t_entity	*inky;
 	t_entity	*pinky;
@@ -31,8 +31,8 @@ int	loop_time(t_game *game)
 
 	map = game->map;
 	tm = game->time;
-	/*
 	player = game->entities->player;
+	/*
 	blinky = game->entities->blinky;
 	pinky = game->entities->pinky;
 	inky = game->entities->inky;
@@ -57,6 +57,8 @@ int	loop_time(t_game *game)
 		*/
 		if (tm->loop_anim % (FRAME_RATE / (FRAME_RATE / 2)) == 0)
 		{
+			move_entity(*game->window, *map, player);
+			anim_player(*game->window, player);
 			/*
 			if (gost_collision && !game->super_gomme)
 				ft_close(game);
@@ -64,8 +66,6 @@ int	loop_time(t_game *game)
 			move_entity(*game->window, *map, blinky, map->sprites->black);
 			move_entity(*game->window, *map, clyde, map->sprites->black);
 			move_entity(*game->window, *map, inky, map->sprites->black);
-			move_entity(*game->window, *map, player, map->sprites->black);
-			//anim_player(*game->window, player);
 			anim_gost(*game->window, pinky, game->super_gomme);
 			anim_gost(*game->window, blinky, game->super_gomme);
 			anim_gost(*game->window, inky, game->super_gomme);
