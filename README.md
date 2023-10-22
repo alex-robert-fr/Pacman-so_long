@@ -10,7 +10,7 @@ Un remake du jeu classique Pacman, réalisé entièrement en C en utilisant la m
     <img src="./img/pacman_3.png" alt="Pacman" width="200"/>
 </p>
 
-## Création de niveaux personnalisés / *Custom Level Creation*
+## 🗺️ Création de niveaux personnalisés / *Custom Level Creation*
 **Libérez votre créativité** en dessinant vos propres niveaux pour Pacman! La création de niveaux est simplifiée grâce à un système basé sur les fichiers texte. Chaque caractère dans le fichier texte représente un élément dans le jeu.
 
 ***Unleash your creativity** by designing your very own levels for Pacman! Level creation is made simple with a text file-based system. Each character in the text file represents an element in the game.*
@@ -34,7 +34,7 @@ Un remake du jeu classique Pacman, réalisé entièrement en C en utilisant la m
  - *`I` : **Inky** - The light blue ghost.*
  - *`p` : **Pinky** - The pink ghost.*
 
- ### Exemple de niveau / *Sample Level*
+### Exemple de niveau / *Sample Level*
 ```
 11111111111
 1000CBpI001
@@ -124,3 +124,10 @@ make
 
 Ce projet est sous licence GPL-3.0. Voir le fichier LICENCE pour plus d'informations.
 This project is licensed under GPL-3.0. See the LICENSE file for more details.
+
+<br/>
+<br/>
+
+<p align="center">
+    <img src="./img/round-cat-space.gif" alt="Photo de profil / Profil Picture" height="200"/>
+</p>
