@@ -4,9 +4,11 @@ Un remake du jeu classique Pacman, réalisé entièrement en C en utilisant la m
 
 *A remake of the classic Pacman game, crafted entirely in C using the minilibx from 42 school. **Craft your own levels with a simple text file and experience enhanced gameplay with fluid animations and compelling game mechanics.***
 
-<img src="./img/pacman.png" alt="Pacman" width="250"/>
-<img src="./img/pacman_2.png" alt="Pacman" width="250"/>
-<img src="./img/pacman_3.png" alt="Pacman" width="250"/>
+<p align="center">
+    <img src="./img/pacman.png" alt="Pacman" width="200"/>
+    <img src="./img/pacman_2.png" alt="Pacman" width="200"/>
+    <img src="./img/pacman_3.png" alt="Pacman" width="200"/>
+</p>
 
 ## Création de niveaux personnalisés / *Custom Level Creation*
 **Libérez votre créativité** en dessinant vos propres niveaux pour Pacman! La création de niveaux est simplifiée grâce à un système basé sur les fichiers texte. Chaque caractère dans le fichier texte représente un élément dans le jeu.
